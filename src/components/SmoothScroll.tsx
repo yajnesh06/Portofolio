@@ -13,7 +13,7 @@ const SmoothScroll: React.FC<SmoothScrollProps> = ({ children }) => {
     const lenis = new Lenis({
       duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      direction: 'vertical',
+      // Removed 'direction' property as it's not in LenisOptions type
       gestureDirection: 'vertical',
       smooth: true,
       mouseMultiplier: 1,
