@@ -1,97 +1,80 @@
 
 import React, { useEffect, useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 
 interface IntroAnimationProps {
   userName: string;
-  duration?: number;
   onComplete: () => void;
 }
 
-const IntroAnimation: React.FC<IntroAnimationProps> = ({ 
-  userName, 
-  duration = 5000,
-  onComplete 
-}) => {
-  const [isVisible, setIsVisible] = useState(true);
-  const [typedText, setTypedText] = useState("");
+const IntroAnimation: React.FC<IntroAnimationProps> = ({ userName, onComplete }) => {
+  const [typingComplete, setTypingComplete] = useState(false);
+  const [displayedName, setDisplayedName] = useState('');
+  const [showCursor, setShowCursor] = useState(true);
 
-  // Typing effect with smoother animation
   useEffect(() => {
-    if (!isVisible) return;
+    let index = 0;
+    const typingSpeed = 100; // Adjust for typing speed (lower = faster)
     
-    let currentIndex = 0;
+    // Typing animation
     const typingInterval = setInterval(() => {
-      if (currentIndex < userName.length) {
-        setTypedText(prev => prev + userName.charAt(currentIndex));
-        currentIndex++;
+      if (index < userName.length) {
+        setDisplayedName(userName.substring(0, index + 1));
+        index++;
       } else {
         clearInterval(typingInterval);
+        setTypingComplete(true);
+        
+        // After typing is complete, wait before starting exit animation
+        setTimeout(() => {
+          setShowCursor(false);
+          setTimeout(onComplete, 500);
+        }, 1000);
       }
-    }, 80); // Faster typing for smoother effect
-
-    return () => clearInterval(typingInterval);
-  }, [userName, isVisible]);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsVisible(false);
-      setTimeout(onComplete, 1000); // Allow exit animation to complete
-    }, duration);
-
-    return () => clearTimeout(timer);
-  }, [duration, onComplete]);
+    }, typingSpeed);
+    
+    // Blinking cursor effect
+    const cursorInterval = setInterval(() => {
+      if (!typingComplete) {
+        setShowCursor(prev => !prev);
+      }
+    }, 530);
+    
+    return () => {
+      clearInterval(typingInterval);
+      clearInterval(cursorInterval);
+    };
+  }, [userName, onComplete]);
 
   return (
-    <AnimatePresence mode="wait">
-      {isVisible && (
-        <motion.div 
-          className="fixed inset-0 z-50 flex items-center justify-center"
-          style={{
-            backgroundColor: "#000000",
-          }}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+    <motion.div
+      className="fixed inset-0 flex items-center justify-center bg-black z-50"
+      animate={typingComplete ? { opacity: 0 } : { opacity: 1 }}
+      transition={{ duration: 0.5, ease: "easeInOut" }}
+    >
+      <div className="text-center">
+        <motion.h1 
+          className="text-5xl md:text-7xl font-bold font-gilroy flex items-center justify-center"
+          initial={{ scale: 0.9, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
         >
-          <motion.div
-            className="overflow-hidden"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
+          <span
+            style={{
+              background: "linear-gradient(135deg, #4CAF50 0%, #FFEB3B 100%)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              backgroundClip: "text",
+            }}
           >
-            <motion.h1 
-              className="text-4xl md:text-6xl lg:text-8xl font-bold font-gilroy"
-              style={{
-                background: "linear-gradient(135deg, #4CAF50 0%, #FFEB3B 50%, #FFA726 100%)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
-                textFillColor: "transparent"
-              }}
-              initial={{ y: 100, opacity: 0 }}
-              animate={{ 
-                y: 0, 
-                opacity: 1,
-                transition: { 
-                  duration: 0.8, 
-                  ease: [0.22, 1, 0.36, 1],
-                  delay: 0.3
-                }
-              }}
-            >
-              {typedText}
-              <motion.span 
-                animate={{ opacity: [1, 0, 1] }}
-                transition={{ repeat: Infinity, duration: 0.8 }}
-                className="inline-block ml-1 w-2 h-12 md:h-16 lg:h-20 bg-green-500"
-              />
-            </motion.h1>
-          </motion.div>
-        </motion.div>
-      )}
-    </AnimatePresence>
+            {displayedName}
+          </span>
+          {showCursor && (
+            <span className="animate-pulse ml-1 border-r-4 border-green-500 h-16"></span>
+          )}
+        </motion.h1>
+      </div>
+    </motion.div>
   );
 };
 
