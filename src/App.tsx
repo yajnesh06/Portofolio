@@ -15,6 +15,7 @@ import NotFound from "./pages/NotFound";
 
 // Components
 import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 import IntroAnimation from "./components/IntroAnimation";
 import SmoothScroll from "./components/SmoothScroll";
 
@@ -65,6 +66,7 @@ const App = () => {
                     <Route path="/contact" element={<Contact />} />
                     <Route path="*" element={<NotFound />} />
                   </Routes>
+                  <Footer />
                 </SmoothScroll>
               </motion.div>
             )}

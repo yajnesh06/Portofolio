@@ -61,7 +61,7 @@ const IntroAnimation: React.FC<IntroAnimationProps> = ({ userName, onComplete })
         >
           <span
             style={{
-              background: "linear-gradient(135deg, #4CAF50 0%, #FFEB3B 100%)",
+              background: "linear-gradient(135deg, #005efe 0%, #001FAA 100%)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               backgroundClip: "text",
@@ -70,7 +70,7 @@ const IntroAnimation: React.FC<IntroAnimationProps> = ({ userName, onComplete })
             {displayedName}
           </span>
           {showCursor && (
-            <span className="animate-pulse ml-1 border-r-4 border-green-500 h-16"></span>
+            <span className="animate-pulse ml-1 border-r-4 border-blue-500 h-16"></span>
           )}
         </motion.h1>
       </div>
