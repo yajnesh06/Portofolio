@@ -63,7 +63,7 @@ const Index = () => {
   ];
 
   return (
-    <div className="min-h-screen pt-24 bg-black">
+    <div className="min-h-screen pt-24 bg-[#ebe9e1]">
       {/* Hero Section */}
       <section className="section-padding">
         <div className="container mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -73,12 +73,12 @@ const Index = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="flex flex-col items-start gap-6"
           >
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-gilroy leading-tight">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-gilroy leading-tight text-black">
               Hello, I'm{" "}
               <span 
                 className="font-gilroy"
                 style={{
-                  background: "linear-gradient(135deg, #4CAF50 0%, #FFEB3B 50%, #FFA726 100%)",
+                  background: "linear-gradient(135deg, #005efe 0%, #003cb6 100%)",
                   WebkitBackgroundClip: "text",
                   WebkitTextFillColor: "transparent",
                   backgroundClip: "text",
@@ -87,19 +87,19 @@ const Index = () => {
                 Yajnesh Ponnappa
               </span>
             </h1>
-            <p className="text-lg text-gray-300 font-gilroy">
+            <p className="text-lg text-gray-700 font-gilroy">
               A passionate developer focused on creating beautiful and functional web experiences that make a difference.
             </p>
             <div className="flex gap-4">
               <Button 
-                className="bg-green-600 hover:bg-green-700 text-white font-gilroy" 
+                className="bg-[#005efe] hover:bg-[#0050e0] text-white font-gilroy" 
                 onClick={() => navigate('/contact')}
               >
                 Contact Me
               </Button>
               <Button 
                 variant="outline" 
-                className="border-green-500 text-green-500 hover:bg-green-500/10 font-gilroy"
+                className="border-[#005efe] text-[#005efe] hover:bg-[#005efe]/10 font-gilroy"
               >
                 View Resume
               </Button>
@@ -112,26 +112,26 @@ const Index = () => {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="relative flex justify-center"
           >
-            {/* The background removed image of a person sitting */}
+            {/* The new image of person sitting with laptop */}
             <img 
-              src="/lovable-uploads/eeeec372-eca7-4a6a-b981-f33be2ac09ae.png" 
+              src="/lovable-uploads/2ad7618b-9c74-475b-a660-d365d34d6d83.png" 
               alt="Yajnesh Ponnappa" 
               className="w-full max-w-md object-contain z-10"
               style={{ filter: "drop-shadow(0 10px 15px rgba(0,0,0,0.15))" }}
             />
             {/* Decorative gradient background */}
-            <div className="absolute inset-0 bg-gradient-to-br from-green-500/20 via-yellow-500/10 to-orange-500/20 rounded-full blur-3xl opacity-30 -z-10"></div>
+            <div className="absolute inset-0 bg-gradient-to-br from-[#005efe]/20 via-[#0046d5]/10 to-[#003cb6]/20 rounded-full blur-3xl opacity-30 -z-10"></div>
           </motion.div>
         </div>
       </section>
 
       {/* Skills Section */}
-      <section className="section-padding bg-black bg-opacity-95">
+      <section className="section-padding bg-[#ebe9e1]">
         <div className="container mx-auto">
           <motion.h2 
             className="text-3xl md:text-4xl font-bold mb-12 text-center font-gilroy reveal"
             style={{
-              background: "linear-gradient(135deg, #4CAF50 0%, #FFEB3B 100%)",
+              background: "linear-gradient(135deg, #005efe 0%, #003cb6 100%)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               backgroundClip: "text",
@@ -147,12 +147,12 @@ const Index = () => {
             {["React", "TypeScript", "Node.js", "Next.js", "Tailwind CSS", "GSAP", "Framer Motion", "UI/UX Design"].map((skill, index) => (
               <motion.div
                 key={index}
-                className="bg-gray-900 p-4 rounded-lg shadow-sm border border-green-500/30 flex items-center justify-center text-center"
+                className="bg-white p-4 rounded-lg shadow-sm border border-[#005efe]/30 flex items-center justify-center text-center"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
               >
-                <span className="font-medium font-gilroy text-white">{skill}</span>
+                <span className="font-medium font-gilroy text-gray-800">{skill}</span>
               </motion.div>
             ))}
           </div>
@@ -165,7 +165,7 @@ const Index = () => {
           <h2 
             className="text-3xl md:text-4xl font-bold mb-4 font-gilroy reveal"
             style={{
-              background: "linear-gradient(135deg, #4CAF50 0%, #FFEB3B 100%)",
+              background: "linear-gradient(135deg, #005efe 0%, #003cb6 100%)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               backgroundClip: "text",
@@ -173,7 +173,7 @@ const Index = () => {
           >
             My Projects
           </h2>
-          <p className="text-lg text-gray-300 mb-12 max-w-2xl font-gilroy reveal">
+          <p className="text-lg text-gray-700 mb-12 max-w-2xl font-gilroy reveal">
             A showcase of my recent work, demonstrating my skills in design and development.
           </p>
           
@@ -181,7 +181,7 @@ const Index = () => {
             {projects.map((project) => (
               <div 
                 key={project.id}
-                className="project-card bg-gray-900 rounded-lg overflow-hidden shadow-md border border-green-500/20"
+                className="project-card bg-white rounded-lg overflow-hidden shadow-md border border-[#005efe]/20"
               >
                 <div className="relative h-48 overflow-hidden">
                   <img 
@@ -191,11 +191,11 @@ const Index = () => {
                   />
                 </div>
                 <div className="p-6">
-                  <h3 className="text-xl font-semibold mb-2 font-gilroy text-white">{project.title}</h3>
-                  <p className="text-gray-400 mb-4 font-gilroy">{project.description}</p>
+                  <h3 className="text-xl font-semibold mb-2 font-gilroy text-gray-800">{project.title}</h3>
+                  <p className="text-gray-600 mb-4 font-gilroy">{project.description}</p>
                   <a 
                     href={`/projects/${project.id}`} 
-                    className="text-green-500 font-medium hover:underline inline-flex items-center font-gilroy"
+                    className="text-[#005efe] font-medium hover:underline inline-flex items-center font-gilroy"
                   >
                     View Details
                     <svg 
