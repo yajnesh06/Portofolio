@@ -19,6 +19,9 @@ export default {
 			}
 		},
 		extend: {
+			fontFamily: {
+				'gilroy': ['Gilroy', 'sans-serif'],
+			},
 			colors: {
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
@@ -26,9 +29,9 @@ export default {
 				background: 'hsl(var(--background))',
 				foreground: 'hsl(var(--foreground))',
 				accent: {
-					DEFAULT: '#e43d12', // accent color for buttons and text
-					light: '#ff5a2c',
-					dark: '#c83210',
+					DEFAULT: '#4CAF50', // Updated to green accent
+					light: '#66BB6A',
+					dark: '#388E3C',
 				},
 				cream: '#ebe9e1', // background color
 				primary: {

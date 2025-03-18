@@ -23,7 +23,7 @@ const queryClient = new QueryClient();
 const App = () => {
   const [showIntro, setShowIntro] = useState(true);
   const [contentVisible, setContentVisible] = useState(false);
-  const userName = "John Doe"; // Replace with your name
+  const userName = "Yajnesh Ponnappa"; // Updated name
 
   useEffect(() => {
     // Prevent scrolling during intro animation

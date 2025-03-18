@@ -10,10 +10,28 @@ interface IntroAnimationProps {
 
 const IntroAnimation: React.FC<IntroAnimationProps> = ({ 
   userName, 
-  duration = 4000,
+  duration = 5000,  // Increased duration for typing effect
   onComplete 
 }) => {
   const [isVisible, setIsVisible] = useState(true);
+  const [typedText, setTypedText] = useState("");
+
+  // Typing effect
+  useEffect(() => {
+    if (!isVisible) return;
+    
+    let currentIndex = 0;
+    const typingInterval = setInterval(() => {
+      if (currentIndex < userName.length) {
+        setTypedText(prev => prev + userName.charAt(currentIndex));
+        currentIndex++;
+      } else {
+        clearInterval(typingInterval);
+      }
+    }, 100); // Speed of typing
+
+    return () => clearInterval(typingInterval);
+  }, [userName, isVisible]);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -28,8 +46,12 @@ const IntroAnimation: React.FC<IntroAnimationProps> = ({
     <AnimatePresence mode="wait">
       {isVisible && (
         <motion.div 
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black"
-          initial={{ opacity: 1 }}
+          className="fixed inset-0 z-50 flex items-center justify-center"
+          style={{
+            background: "linear-gradient(135deg, #9AE6B4 0%, #FEFACD 50%, #FEC6A1 100%)"
+          }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         >
@@ -40,7 +62,7 @@ const IntroAnimation: React.FC<IntroAnimationProps> = ({
             transition={{ duration: 0.5, delay: 0.2 }}
           >
             <motion.h1 
-              className="text-3xl md:text-5xl lg:text-7xl font-bold text-white"
+              className="text-3xl md:text-5xl lg:text-7xl font-bold text-gray-800 font-gilroy"
               initial={{ y: 100, opacity: 0 }}
               animate={{ 
                 y: 0, 
@@ -52,24 +74,12 @@ const IntroAnimation: React.FC<IntroAnimationProps> = ({
                 }
               }}
             >
-              {userName.split('').map((letter, index) => (
-                <motion.span 
-                  key={index}
-                  className="inline-block"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ 
-                    opacity: 1, 
-                    y: 0,
-                    transition: { 
-                      duration: 0.6, 
-                      delay: 0.5 + (index * 0.1),
-                      ease: [0.22, 1, 0.36, 1]
-                    }
-                  }}
-                >
-                  {letter === ' ' ? '\u00A0' : letter}
-                </motion.span>
-              ))}
+              {typedText}
+              <motion.span 
+                animate={{ opacity: [1, 0, 1] }}
+                transition={{ repeat: Infinity, duration: 0.8 }}
+                className="inline-block ml-1 w-1 h-10 bg-accent"
+              />
             </motion.h1>
           </motion.div>
         </motion.div>

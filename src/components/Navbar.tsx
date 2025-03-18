@@ -34,24 +34,24 @@ const Navbar: React.FC<NavbarProps> = ({ userName }) => {
       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
     >
       <div className="container mx-auto px-6 flex justify-between items-center">
-        <Link to="/" className="text-xl font-medium">
+        <Link to="/" className="text-xl font-medium font-gilroy">
           <span className="text-accent">{userName}</span>
         </Link>
         
         <nav>
           <ul className="flex space-x-8">
             <li>
-              <Link to="/" className="text-gray-800 hover:text-accent transition-colors">
+              <Link to="/" className="text-gray-800 hover:text-accent transition-colors font-gilroy">
                 Home
               </Link>
             </li>
             <li>
-              <Link to="/projects" className="text-gray-800 hover:text-accent transition-colors">
+              <Link to="/projects" className="text-gray-800 hover:text-accent transition-colors font-gilroy">
                 Projects
               </Link>
             </li>
             <li>
-              <Link to="/contact" className="text-gray-800 hover:text-accent transition-colors">
+              <Link to="/contact" className="text-gray-800 hover:text-accent transition-colors font-gilroy">
                 Contact
               </Link>
             </li>
