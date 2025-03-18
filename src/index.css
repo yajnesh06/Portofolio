@@ -73,7 +73,7 @@
   }
 
   body {
-    @apply bg-cream text-foreground antialiased;
+    @apply bg-black text-white antialiased;
     font-feature-settings: "rlig" 1, "calt" 1;
   }
 
@@ -102,15 +102,18 @@
   }
 
   .text-accent {
-    color: #e43d12;
+    background: linear-gradient(135deg, #4CAF50 0%, #FFEB3B 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
 
   .bg-accent {
-    background-color: #e43d12;
+    background-color: #4CAF50;
   }
 
   .border-accent {
-    border-color: #e43d12;
+    border-color: #4CAF50;
   }
 
   .project-card {
@@ -119,7 +122,7 @@
 
   .project-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
   }
 
   .hero-image {
@@ -127,7 +130,7 @@
   }
 
   .button-accent {
-    @apply bg-accent text-white py-2 px-6 rounded-md transition-all duration-300 hover:bg-accent-light;
+    @apply bg-green-600 text-white py-2 px-6 rounded-md transition-all duration-300 hover:bg-green-700;
   }
 
   .section-padding {

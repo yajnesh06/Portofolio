@@ -8,7 +8,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 // Pages
-import Home from "./pages/Home";
+import Index from "./pages/Index";
 import Projects from "./pages/Projects";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
@@ -23,7 +23,7 @@ const queryClient = new QueryClient();
 const App = () => {
   const [showIntro, setShowIntro] = useState(true);
   const [contentVisible, setContentVisible] = useState(false);
-  const userName = "Yajnesh Ponnappa"; // Updated name
+  const userName = "Yajnesh Ponnappa";
 
   useEffect(() => {
     // Prevent scrolling during intro animation
@@ -60,7 +60,7 @@ const App = () => {
                 <SmoothScroll>
                   <Navbar userName={userName} />
                   <Routes>
-                    <Route path="/" element={<Home />} />
+                    <Route path="/" element={<Index />} />
                     <Route path="/projects" element={<Projects />} />
                     <Route path="/contact" element={<Contact />} />
                     <Route path="*" element={<NotFound />} />

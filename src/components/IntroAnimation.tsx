@@ -10,13 +10,13 @@ interface IntroAnimationProps {
 
 const IntroAnimation: React.FC<IntroAnimationProps> = ({ 
   userName, 
-  duration = 5000,  // Increased duration for typing effect
+  duration = 5000,
   onComplete 
 }) => {
   const [isVisible, setIsVisible] = useState(true);
   const [typedText, setTypedText] = useState("");
 
-  // Typing effect
+  // Typing effect with smoother animation
   useEffect(() => {
     if (!isVisible) return;
     
@@ -28,7 +28,7 @@ const IntroAnimation: React.FC<IntroAnimationProps> = ({
       } else {
         clearInterval(typingInterval);
       }
-    }, 100); // Speed of typing
+    }, 80); // Faster typing for smoother effect
 
     return () => clearInterval(typingInterval);
   }, [userName, isVisible]);
@@ -48,7 +48,7 @@ const IntroAnimation: React.FC<IntroAnimationProps> = ({
         <motion.div 
           className="fixed inset-0 z-50 flex items-center justify-center"
           style={{
-            background: "linear-gradient(135deg, #9AE6B4 0%, #FEFACD 50%, #FEC6A1 100%)"
+            backgroundColor: "#000000",
           }}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -62,7 +62,14 @@ const IntroAnimation: React.FC<IntroAnimationProps> = ({
             transition={{ duration: 0.5, delay: 0.2 }}
           >
             <motion.h1 
-              className="text-3xl md:text-5xl lg:text-7xl font-bold text-gray-800 font-gilroy"
+              className="text-4xl md:text-6xl lg:text-8xl font-bold font-gilroy"
+              style={{
+                background: "linear-gradient(135deg, #4CAF50 0%, #FFEB3B 50%, #FFA726 100%)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+                textFillColor: "transparent"
+              }}
               initial={{ y: 100, opacity: 0 }}
               animate={{ 
                 y: 0, 
@@ -78,7 +85,7 @@ const IntroAnimation: React.FC<IntroAnimationProps> = ({
               <motion.span 
                 animate={{ opacity: [1, 0, 1] }}
                 transition={{ repeat: Infinity, duration: 0.8 }}
-                className="inline-block ml-1 w-1 h-10 bg-accent"
+                className="inline-block ml-1 w-2 h-12 md:h-16 lg:h-20 bg-green-500"
               />
             </motion.h1>
           </motion.div>

@@ -4,10 +4,13 @@ import { motion } from 'framer-motion';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Button } from '@/components/ui/button';
+import { useNavigate } from 'react-router-dom';
 
 gsap.registerPlugin(ScrollTrigger);
 
 const Index = () => {
+  const navigate = useNavigate();
+  
   useEffect(() => {
     // Animation for project cards
     const projectCards = document.querySelectorAll('.project-card');
@@ -60,7 +63,7 @@ const Index = () => {
   ];
 
   return (
-    <div className="min-h-screen pt-24">
+    <div className="min-h-screen pt-24 bg-black">
       {/* Hero Section */}
       <section className="section-padding">
         <div className="container mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -71,16 +74,33 @@ const Index = () => {
             className="flex flex-col items-start gap-6"
           >
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-gilroy leading-tight">
-              Hello, I'm <span className="text-accent">Yajnesh Ponnappa</span>
+              Hello, I'm{" "}
+              <span 
+                className="font-gilroy"
+                style={{
+                  background: "linear-gradient(135deg, #4CAF50 0%, #FFEB3B 50%, #FFA726 100%)",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  backgroundClip: "text",
+                }}
+              >
+                Yajnesh Ponnappa
+              </span>
             </h1>
-            <p className="text-lg text-gray-700 font-gilroy">
+            <p className="text-lg text-gray-300 font-gilroy">
               A passionate developer focused on creating beautiful and functional web experiences that make a difference.
             </p>
             <div className="flex gap-4">
-              <Button className="bg-accent hover:bg-accent-light text-white font-gilroy">
+              <Button 
+                className="bg-green-600 hover:bg-green-700 text-white font-gilroy" 
+                onClick={() => navigate('/contact')}
+              >
                 Contact Me
               </Button>
-              <Button variant="outline" className="border-accent text-accent hover:bg-accent/10 font-gilroy">
+              <Button 
+                variant="outline" 
+                className="border-green-500 text-green-500 hover:bg-green-500/10 font-gilroy"
+              >
                 View Resume
               </Button>
             </div>
@@ -94,39 +114,45 @@ const Index = () => {
           >
             {/* The background removed image of a person sitting */}
             <img 
-              src="/public/lovable-uploads/eeeec372-eca7-4a6a-b981-f33be2ac09ae.png" 
+              src="/lovable-uploads/eeeec372-eca7-4a6a-b981-f33be2ac09ae.png" 
               alt="Yajnesh Ponnappa" 
               className="w-full max-w-md object-contain z-10"
               style={{ filter: "drop-shadow(0 10px 15px rgba(0,0,0,0.15))" }}
             />
-            {/* Decorative background elements */}
-            <div className="absolute inset-0 bg-gradient-to-br from-green-100 via-yellow-50 to-orange-50 rounded-full blur-3xl opacity-50 -z-10"></div>
+            {/* Decorative gradient background */}
+            <div className="absolute inset-0 bg-gradient-to-br from-green-500/20 via-yellow-500/10 to-orange-500/20 rounded-full blur-3xl opacity-30 -z-10"></div>
           </motion.div>
         </div>
       </section>
 
       {/* Skills Section */}
-      <section className="section-padding bg-gradient-to-br from-green-50 via-yellow-50 to-orange-50">
+      <section className="section-padding bg-black bg-opacity-95">
         <div className="container mx-auto">
           <motion.h2 
             className="text-3xl md:text-4xl font-bold mb-12 text-center font-gilroy reveal"
+            style={{
+              background: "linear-gradient(135deg, #4CAF50 0%, #FFEB3B 100%)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              backgroundClip: "text",
+            }}
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            My <span className="text-accent">Skills</span>
+            My Skills
           </motion.h2>
           
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             {["React", "TypeScript", "Node.js", "Next.js", "Tailwind CSS", "GSAP", "Framer Motion", "UI/UX Design"].map((skill, index) => (
               <motion.div
                 key={index}
-                className="bg-white p-4 rounded-lg shadow-sm flex items-center justify-center text-center"
+                className="bg-gray-900 p-4 rounded-lg shadow-sm border border-green-500/30 flex items-center justify-center text-center"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
               >
-                <span className="font-medium font-gilroy">{skill}</span>
+                <span className="font-medium font-gilroy text-white">{skill}</span>
               </motion.div>
             ))}
           </div>
@@ -134,12 +160,20 @@ const Index = () => {
       </section>
 
       {/* Projects Section */}
-      <section className="section-padding">
+      <section className="section-padding" id="projects">
         <div className="container mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 font-gilroy reveal">
-            My <span className="text-accent">Projects</span>
+          <h2 
+            className="text-3xl md:text-4xl font-bold mb-4 font-gilroy reveal"
+            style={{
+              background: "linear-gradient(135deg, #4CAF50 0%, #FFEB3B 100%)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              backgroundClip: "text",
+            }}
+          >
+            My Projects
           </h2>
-          <p className="text-lg text-gray-700 mb-12 max-w-2xl font-gilroy reveal">
+          <p className="text-lg text-gray-300 mb-12 max-w-2xl font-gilroy reveal">
             A showcase of my recent work, demonstrating my skills in design and development.
           </p>
           
@@ -147,7 +181,7 @@ const Index = () => {
             {projects.map((project) => (
               <div 
                 key={project.id}
-                className="project-card bg-white rounded-lg overflow-hidden shadow-md"
+                className="project-card bg-gray-900 rounded-lg overflow-hidden shadow-md border border-green-500/20"
               >
                 <div className="relative h-48 overflow-hidden">
                   <img 
@@ -157,11 +191,11 @@ const Index = () => {
                   />
                 </div>
                 <div className="p-6">
-                  <h3 className="text-xl font-semibold mb-2 font-gilroy">{project.title}</h3>
-                  <p className="text-gray-700 mb-4 font-gilroy">{project.description}</p>
+                  <h3 className="text-xl font-semibold mb-2 font-gilroy text-white">{project.title}</h3>
+                  <p className="text-gray-400 mb-4 font-gilroy">{project.description}</p>
                   <a 
                     href={`/projects/${project.id}`} 
-                    className="text-accent font-medium hover:underline inline-flex items-center font-gilroy"
+                    className="text-green-500 font-medium hover:underline inline-flex items-center font-gilroy"
                   >
                     View Details
                     <svg 
