@@ -13,9 +13,8 @@ const SmoothScroll: React.FC<SmoothScrollProps> = ({ children }) => {
     const lenis = new Lenis({
       duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      // Removed 'direction' and 'gestureDirection' properties as they don't exist in LenisOptions type
-      smooth: true,
-      mouseMultiplier: 1,
+      // Removed 'direction', 'gestureDirection', and 'smooth' properties as they don't exist in LenisOptions type
+      wheelMultiplier: 1,
       touchMultiplier: 2,
       infinite: false,
     });
