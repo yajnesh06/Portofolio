@@ -87,7 +87,7 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-[#ebe9e1]">
       {/* Hero Section - Reduced top margin */}
-      <section className="pt-10 pb-24 px-4 md:px-12 lg:px-24">
+      <section className="pt-6 pb-20 px-4 md:px-12 lg:px-24">
         <div className="container mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
@@ -171,7 +171,7 @@ const Index = () => {
         <InfiniteSkillsSlider skills={skills} />
       </section>
 
-      {/* Projects Section - Redesigned to match the award-style format */}
+      {/* Projects Section - Diagonal layout */}
       <section className="py-16 px-4 md:px-12 lg:px-24 bg-[#ebe9e1]" id="projects">
         <div className="container mx-auto">
           <h2 
@@ -185,48 +185,59 @@ const Index = () => {
           >
             My Projects
           </h2>
-          <p className="text-lg text-gray-700 mb-12 max-w-2xl">
+          <p className="text-lg text-gray-700 mb-16 max-w-2xl">
             A showcase of my recent work, demonstrating my skills in design and development.
           </p>
           
-          <div className="grid grid-cols-1 gap-8">
+          {/* Diagonal staggered layout */}
+          <div className="relative">
             {projects.map((project, index) => (
               <div 
                 key={project.id}
-                className="project-card border-t border-gray-300 pt-8 pb-10 group hover:border-[#005efe] transition-colors duration-300"
+                className={`project-card mb-32 ${
+                  index % 2 === 0 
+                    ? 'ml-0 mr-auto md:mr-[5%] lg:mr-[10%]' 
+                    : 'ml-auto mr-0 md:ml-[5%] lg:ml-[10%]'
+                }`}
+                style={{
+                  width: '100%',
+                  maxWidth: '1000px',
+                }}
               >
-                <a href={`/projects/${project.id}`} className="block">
-                  <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
-                    {/* Left side - project info */}
-                    <div className="md:col-span-7 flex flex-col">
-                      <div className="flex justify-between items-center text-sm mb-4">
-                        <span className="text-[#005efe] font-medium">{project.category}</span>
-                        <span className="text-gray-600">{project.date}</span>
-                      </div>
+                <a 
+                  href={`/projects/${project.id}`} 
+                  className="block group hover:opacity-95 transition-opacity duration-300"
+                >
+                  <div className="overflow-hidden rounded-lg shadow-lg bg-white">
+                    <div className="relative aspect-[16/9] overflow-hidden">
+                      <img 
+                        src={project.image} 
+                        alt={project.title} 
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      />
                       
-                      <h3 className="text-2xl lg:text-3xl font-semibold mb-3 group-hover:text-[#005efe] transition-colors duration-300">
-                        {project.title}
-                      </h3>
-                      
-                      <p className="text-gray-700 mb-6 text-lg">
-                        {project.description}
-                      </p>
-                      
-                      <div className="flex items-center text-[#005efe] font-medium mt-auto group-hover:translate-x-1 transition-transform duration-300">
-                        <span className="mr-1">View project</span>
-                        <ArrowRight size={16} />
+                      {/* Overlay color tag */}
+                      <div className="absolute top-0 left-0 bg-[#ff3131] text-white px-4 py-2 z-10">
+                        <span className="font-semibold">{project.category}</span>
                       </div>
                     </div>
                     
-                    {/* Right side - project image */}
-                    <div className="md:col-span-5 overflow-hidden rounded-lg">
-                      <div className="relative aspect-[4/3] overflow-hidden">
-                        <img 
-                          src={project.image} 
-                          alt={project.title} 
-                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                        />
-                        <div className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div className="p-6">
+                      <div className="flex justify-between items-center text-sm mb-3">
+                        <span className="text-gray-600">{project.date}</span>
+                      </div>
+                      
+                      <h3 className="text-2xl md:text-3xl font-bold mb-3 group-hover:text-[#005efe] transition-colors duration-300">
+                        {project.title}
+                      </h3>
+                      
+                      <p className="text-gray-700 mb-4">
+                        {project.description}
+                      </p>
+                      
+                      <div className="flex items-center text-[#005efe] font-medium group-hover:translate-x-1 transition-transform duration-300">
+                        <span className="mr-1">View project</span>
+                        <ArrowRight size={16} />
                       </div>
                     </div>
                   </div>
