@@ -5,6 +5,7 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Button } from '@/components/ui/button';
 import { useNavigate } from 'react-router-dom';
+import InfiniteSkillsSlider from '@/components/InfiniteSkillsSlider';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -40,6 +41,21 @@ const Index = () => {
       ScrollTrigger.getAll().forEach(trigger => trigger.kill());
     };
   }, []);
+
+  const skills = [
+    { name: "React", icon: "⚛️" },
+    { name: "TypeScript", icon: "𝕋" },
+    { name: "Node.js", icon: "🟢" },
+    { name: "Next.js", icon: "▲" },
+    { name: "Tailwind CSS", icon: "🌊" },
+    { name: "GSAP", icon: "🔄" },
+    { name: "Framer Motion", icon: "🎞️" },
+    { name: "UI/UX Design", icon: "🎨" },
+    { name: "GraphQL", icon: "◯" },
+    { name: "Firebase", icon: "🔥" },
+    { name: "AWS", icon: "☁️" },
+    { name: "MongoDB", icon: "🍃" },
+  ];
 
   const projects = [
     {
@@ -112,7 +128,7 @@ const Index = () => {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="relative flex justify-center"
           >
-            {/* The new image of person sitting with laptop */}
+            {/* The image of person sitting with laptop */}
             <img 
               src="/lovable-uploads/2ad7618b-9c74-475b-a660-d365d34d6d83.png" 
               alt="Yajnesh Ponnappa" 
@@ -126,10 +142,10 @@ const Index = () => {
       </section>
 
       {/* Skills Section */}
-      <section className="section-padding bg-[#ebe9e1]">
-        <div className="container mx-auto">
+      <section className="py-24 overflow-hidden bg-[#ebe9e1]">
+        <div className="container mx-auto mb-12">
           <motion.h2 
-            className="text-3xl md:text-4xl font-bold mb-12 text-center font-gilroy reveal"
+            className="text-3xl md:text-4xl font-bold mb-6 text-center font-gilroy reveal"
             style={{
               background: "linear-gradient(135deg, #005efe 0%, #003cb6 100%)",
               WebkitBackgroundClip: "text",
@@ -143,20 +159,13 @@ const Index = () => {
             My Skills
           </motion.h2>
           
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {["React", "TypeScript", "Node.js", "Next.js", "Tailwind CSS", "GSAP", "Framer Motion", "UI/UX Design"].map((skill, index) => (
-              <motion.div
-                key={index}
-                className="bg-white p-4 rounded-lg shadow-sm border border-[#005efe]/30 flex items-center justify-center text-center"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-              >
-                <span className="font-medium font-gilroy text-gray-800">{skill}</span>
-              </motion.div>
-            ))}
-          </div>
+          <p className="text-center text-gray-700 max-w-2xl mx-auto mb-10 font-gilroy">
+            I specialize in these technologies to build modern, responsive, and user-friendly applications.
+          </p>
         </div>
+        
+        {/* Infinite horizontal skills slider */}
+        <InfiniteSkillsSlider skills={skills} />
       </section>
 
       {/* Projects Section */}
