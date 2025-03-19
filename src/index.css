@@ -73,7 +73,7 @@
   }
 
   body {
-    @apply bg-black text-white antialiased;
+    @apply bg-[#ebe9e1] text-black antialiased;
     font-feature-settings: "rlig" 1, "calt" 1;
   }
 
@@ -102,27 +102,26 @@
   }
 
   .text-accent {
-    background: linear-gradient(135deg, #4CAF50 0%, #FFEB3B 100%);
+    background: linear-gradient(135deg, #005efe 0%, #003cb6 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
 
   .bg-accent {
-    background-color: #4CAF50;
+    background-color: #005efe;
   }
 
   .border-accent {
-    border-color: #4CAF50;
+    border-color: #005efe;
   }
 
   .project-card {
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
   }
 
   .project-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
   }
 
   .hero-image {
@@ -130,11 +129,11 @@
   }
 
   .button-accent {
-    @apply bg-green-600 text-white py-2 px-6 rounded-md transition-all duration-300 hover:bg-green-700;
+    @apply bg-[#005efe] text-white py-2 px-6 rounded-md transition-all duration-300 hover:bg-[#0050e0];
   }
 
   .section-padding {
-    @apply py-24 px-4 md:px-12 lg:px-24;
+    @apply py-16 px-4 md:px-12 lg:px-24;
   }
 
   .reveal {

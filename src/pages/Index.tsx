@@ -6,6 +6,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Button } from '@/components/ui/button';
 import { useNavigate } from 'react-router-dom';
 import InfiniteSkillsSlider from '@/components/InfiniteSkillsSlider';
+import { ArrowRight } from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -20,7 +21,7 @@ const Index = () => {
       gsap.fromTo(
         card,
         { 
-          y: 100, 
+          y: 50, 
           opacity: 0 
         },
         { 
@@ -31,7 +32,7 @@ const Index = () => {
           ease: "power3.out",
           scrollTrigger: {
             trigger: card,
-            start: "top 80%",
+            start: "top 85%",
           }
         }
       );
@@ -63,25 +64,31 @@ const Index = () => {
       title: "E-Commerce Platform",
       description: "A modern online shopping experience with intuitive navigation and seamless checkout.",
       image: "https://images.unsplash.com/photo-1661956602116-aa6865609028?ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=764&q=80",
+      date: "2025.02.21",
+      category: "Career"
     },
     {
       id: 2,
       title: "Finance Dashboard",
       description: "Interactive analytics dashboard for monitoring financial metrics and performance.",
       image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
+      date: "2025.01.24",
+      category: "Trend & Vision"
     },
     {
       id: 3,
       title: "Social Media App",
       description: "A feature-rich social platform focusing on community engagement and content sharing.",
       image: "https://images.unsplash.com/photo-1600096194534-95cf5ece04cf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
+      date: "2024.08.04",
+      category: "Press Release"
     },
   ];
 
   return (
-    <div className="min-h-screen pt-24 bg-[#ebe9e1]">
-      {/* Hero Section */}
-      <section className="section-padding">
+    <div className="min-h-screen bg-[#ebe9e1]">
+      {/* Hero Section - Reduced top margin */}
+      <section className="pt-16 pb-24 px-4 md:px-12 lg:px-24">
         <div className="container mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
@@ -89,10 +96,9 @@ const Index = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="flex flex-col items-start gap-6"
           >
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-gilroy leading-tight text-black">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight text-black">
               Hello, I'm{" "}
               <span 
-                className="font-gilroy"
                 style={{
                   background: "linear-gradient(135deg, #005efe 0%, #003cb6 100%)",
                   WebkitBackgroundClip: "text",
@@ -103,19 +109,19 @@ const Index = () => {
                 Yajnesh Ponnappa
               </span>
             </h1>
-            <p className="text-lg text-gray-700 font-gilroy">
+            <p className="text-lg text-gray-700">
               A passionate developer focused on creating beautiful and functional web experiences that make a difference.
             </p>
             <div className="flex gap-4">
               <Button 
-                className="bg-[#005efe] hover:bg-[#0050e0] text-white font-gilroy" 
+                className="bg-[#005efe] hover:bg-[#0050e0] text-white" 
                 onClick={() => navigate('/contact')}
               >
                 Contact Me
               </Button>
               <Button 
                 variant="outline" 
-                className="border-[#005efe] text-[#005efe] hover:bg-[#005efe]/10 font-gilroy"
+                className="border-[#005efe] text-[#005efe] hover:bg-[#005efe]/10"
               >
                 View Resume
               </Button>
@@ -128,24 +134,22 @@ const Index = () => {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="relative flex justify-center"
           >
-            {/* The image of person sitting with laptop */}
             <img 
               src="/lovable-uploads/2ad7618b-9c74-475b-a660-d365d34d6d83.png" 
               alt="Yajnesh Ponnappa" 
               className="w-full max-w-md object-contain z-10"
               style={{ filter: "drop-shadow(0 10px 15px rgba(0,0,0,0.15))" }}
             />
-            {/* Decorative gradient background */}
             <div className="absolute inset-0 bg-gradient-to-br from-[#005efe]/20 via-[#0046d5]/10 to-[#003cb6]/20 rounded-full blur-3xl opacity-30 -z-10"></div>
           </motion.div>
         </div>
       </section>
 
       {/* Skills Section */}
-      <section className="py-24 overflow-hidden bg-[#ebe9e1]">
-        <div className="container mx-auto mb-12">
+      <section className="py-12 overflow-hidden bg-[#ebe9e1]">
+        <div className="container mx-auto mb-6">
           <motion.h2 
-            className="text-3xl md:text-4xl font-bold mb-6 text-center font-gilroy reveal"
+            className="text-3xl md:text-4xl font-bold mb-6 text-center"
             style={{
               background: "linear-gradient(135deg, #005efe 0%, #003cb6 100%)",
               WebkitBackgroundClip: "text",
@@ -159,7 +163,7 @@ const Index = () => {
             My Skills
           </motion.h2>
           
-          <p className="text-center text-gray-700 max-w-2xl mx-auto mb-10 font-gilroy">
+          <p className="text-center text-gray-700 max-w-2xl mx-auto mb-6">
             I specialize in these technologies to build modern, responsive, and user-friendly applications.
           </p>
         </div>
@@ -168,11 +172,11 @@ const Index = () => {
         <InfiniteSkillsSlider skills={skills} />
       </section>
 
-      {/* Projects Section */}
-      <section className="section-padding" id="projects">
+      {/* Projects Section - Updated to award-style format */}
+      <section className="py-16 px-4 md:px-12 lg:px-24 bg-[#ebe9e1]" id="projects">
         <div className="container mx-auto">
           <h2 
-            className="text-3xl md:text-4xl font-bold mb-4 font-gilroy reveal"
+            className="text-3xl md:text-4xl font-bold mb-4"
             style={{
               background: "linear-gradient(135deg, #005efe 0%, #003cb6 100%)",
               WebkitBackgroundClip: "text",
@@ -182,47 +186,50 @@ const Index = () => {
           >
             My Projects
           </h2>
-          <p className="text-lg text-gray-700 mb-12 max-w-2xl font-gilroy reveal">
+          <p className="text-lg text-gray-700 mb-12 max-w-2xl">
             A showcase of my recent work, demonstrating my skills in design and development.
           </p>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {projects.map((project) => (
+            {projects.map((project, index) => (
               <div 
                 key={project.id}
-                className="project-card bg-white rounded-lg overflow-hidden shadow-md border border-[#005efe]/20"
+                className="project-card group h-full"
               >
-                <div className="relative h-48 overflow-hidden">
-                  <img 
-                    src={project.image} 
-                    alt={project.title} 
-                    className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
-                  />
-                </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-semibold mb-2 font-gilroy text-gray-800">{project.title}</h3>
-                  <p className="text-gray-600 mb-4 font-gilroy">{project.description}</p>
-                  <a 
-                    href={`/projects/${project.id}`} 
-                    className="text-[#005efe] font-medium hover:underline inline-flex items-center font-gilroy"
-                  >
-                    View Details
-                    <svg 
-                      className="w-4 h-4 ml-2" 
-                      fill="none" 
-                      stroke="currentColor" 
-                      viewBox="0 0 24 24" 
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path 
-                        strokeLinecap="round" 
-                        strokeLinejoin="round" 
-                        strokeWidth={2} 
-                        d="M14 5l7 7m0 0l-7 7m7-7H3" 
-                      />
-                    </svg>
-                  </a>
-                </div>
+                <a href={`/projects/${project.id}`} className="block h-full">
+                  <div className="relative aspect-[4/3] overflow-hidden rounded-lg mb-4">
+                    <img 
+                      src={project.image} 
+                      alt={project.title} 
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                      <span className="text-white font-medium text-sm px-3 py-1.5 bg-[#005efe] rounded-full transform -translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                        View Project
+                      </span>
+                    </div>
+                  </div>
+                  
+                  <div className="flex flex-col h-full">
+                    <div className="flex justify-between items-center text-sm text-gray-600 mb-2">
+                      <span>{project.date}</span>
+                      <span className="text-[#005efe]">{project.category}</span>
+                    </div>
+                    
+                    <h3 className="text-xl font-semibold mb-2 group-hover:text-[#005efe] transition-colors duration-200">
+                      {project.title}
+                    </h3>
+                    
+                    <p className="text-gray-700 mb-4 flex-grow">
+                      {project.description}
+                    </p>
+                    
+                    <div className="flex items-center text-[#005efe] font-medium group-hover:translate-x-1 transition-transform duration-300">
+                      <span className="mr-1">Read more</span>
+                      <ArrowRight size={14} />
+                    </div>
+                  </div>
+                </a>
               </div>
             ))}
           </div>

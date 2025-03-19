@@ -30,7 +30,7 @@ const Navbar: React.FC<NavbarProps> = ({ userName }) => {
   return (
     <motion.header 
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? 'bg-[#ebe9e1]/90 backdrop-blur-md shadow-sm py-4' : 'bg-transparent py-6'
+        scrolled ? 'bg-[#ebe9e1]/90 backdrop-blur-md shadow-sm py-3' : 'bg-transparent py-4'
       }`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
@@ -38,7 +38,7 @@ const Navbar: React.FC<NavbarProps> = ({ userName }) => {
     >
       <div className="container mx-auto px-6 flex justify-between items-center">
         <Link to="/" 
-          className="text-xl font-medium font-gilroy flex items-center"
+          className="text-xl font-medium flex items-center"
         >
           <span style={{
             background: "linear-gradient(135deg, #005efe 0%, #003cb6 100%)",
@@ -54,17 +54,17 @@ const Navbar: React.FC<NavbarProps> = ({ userName }) => {
         <nav className="hidden md:block">
           <ul className="flex space-x-8">
             <li>
-              <Link to="/" className="text-gray-800 hover:text-[#005efe] transition-colors font-gilroy">
+              <Link to="/" className="text-gray-800 hover:text-[#005efe] transition-colors relative after:absolute after:w-full after:h-0.5 after:bg-[#005efe] after:bottom-0 after:left-0 after:origin-bottom-right after:scale-x-0 hover:after:scale-x-100 hover:after:origin-bottom-left after:transition-transform after:duration-300">
                 Home
               </Link>
             </li>
             <li>
-              <a href="#projects" className="text-gray-800 hover:text-[#005efe] transition-colors font-gilroy">
+              <a href="#projects" className="text-gray-800 hover:text-[#005efe] transition-colors relative after:absolute after:w-full after:h-0.5 after:bg-[#005efe] after:bottom-0 after:left-0 after:origin-bottom-right after:scale-x-0 hover:after:scale-x-100 hover:after:origin-bottom-left after:transition-transform after:duration-300">
                 Projects
               </a>
             </li>
             <li>
-              <Link to="/contact" className="text-gray-800 hover:text-[#005efe] transition-colors font-gilroy">
+              <Link to="/contact" className="text-gray-800 hover:text-[#005efe] transition-colors relative after:absolute after:w-full after:h-0.5 after:bg-[#005efe] after:bottom-0 after:left-0 after:origin-bottom-right after:scale-x-0 hover:after:scale-x-100 hover:after:origin-bottom-left after:transition-transform after:duration-300">
                 Contact
               </Link>
             </li>
@@ -96,7 +96,7 @@ const Navbar: React.FC<NavbarProps> = ({ userName }) => {
           <div className="flex flex-col h-full p-6">
             <div className="flex justify-between items-center mb-10">
               <span 
-                className="text-xl font-medium font-gilroy"
+                className="text-xl font-medium"
                 style={{
                   background: "linear-gradient(135deg, #005efe 0%, #003cb6 100%)",
                   WebkitBackgroundClip: "text",
@@ -121,7 +121,7 @@ const Navbar: React.FC<NavbarProps> = ({ userName }) => {
                 <li>
                   <Link 
                     to="/" 
-                    className="flex items-center justify-between text-gray-800 hover:text-[#005efe] transition-colors font-gilroy"
+                    className="flex items-center justify-between text-gray-800 hover:text-[#005efe] transition-colors"
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     Home
@@ -131,7 +131,7 @@ const Navbar: React.FC<NavbarProps> = ({ userName }) => {
                 <li>
                   <a 
                     href="#projects" 
-                    className="flex items-center justify-between text-gray-800 hover:text-[#005efe] transition-colors font-gilroy"
+                    className="flex items-center justify-between text-gray-800 hover:text-[#005efe] transition-colors"
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     Projects
@@ -141,7 +141,7 @@ const Navbar: React.FC<NavbarProps> = ({ userName }) => {
                 <li>
                   <Link 
                     to="/contact" 
-                    className="flex items-center justify-between text-gray-800 hover:text-[#005efe] transition-colors font-gilroy"
+                    className="flex items-center justify-between text-gray-800 hover:text-[#005efe] transition-colors"
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     Contact
