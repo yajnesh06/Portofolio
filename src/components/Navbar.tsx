@@ -1,9 +1,10 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Menu, X, ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import AnimatedButton from './AnimatedButton';
 
 interface NavbarProps {
   userName: string;
@@ -12,6 +13,7 @@ interface NavbarProps {
 const Navbar: React.FC<NavbarProps> = ({ userName }) => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [hoveredLink, setHoveredLink] = useState<string | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -26,6 +28,12 @@ const Navbar: React.FC<NavbarProps> = ({ userName }) => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, [scrolled]);
+
+  const navLinks = [
+    { id: 'home', path: '/', label: 'Home' },
+    { id: 'projects', path: '#projects', label: 'Projects', isAnchor: true },
+    { id: 'contact', path: '/contact', label: 'Contact' },
+  ];
 
   return (
     <motion.header 
@@ -53,21 +61,39 @@ const Navbar: React.FC<NavbarProps> = ({ userName }) => {
         {/* Desktop Navigation */}
         <nav className="hidden md:block">
           <ul className="flex space-x-8">
-            <li>
-              <Link to="/" className="text-gray-800 hover:text-[#005efe] transition-colors relative after:absolute after:w-full after:h-0.5 after:bg-[#005efe] after:bottom-0 after:left-0 after:origin-bottom-right after:scale-x-0 hover:after:scale-x-100 hover:after:origin-bottom-left after:transition-transform after:duration-300">
-                Home
-              </Link>
-            </li>
-            <li>
-              <a href="#projects" className="text-gray-800 hover:text-[#005efe] transition-colors relative after:absolute after:w-full after:h-0.5 after:bg-[#005efe] after:bottom-0 after:left-0 after:origin-bottom-right after:scale-x-0 hover:after:scale-x-100 hover:after:origin-bottom-left after:transition-transform after:duration-300">
-                Projects
-              </a>
-            </li>
-            <li>
-              <Link to="/contact" className="text-gray-800 hover:text-[#005efe] transition-colors relative after:absolute after:w-full after:h-0.5 after:bg-[#005efe] after:bottom-0 after:left-0 after:origin-bottom-right after:scale-x-0 hover:after:scale-x-100 hover:after:origin-bottom-left after:transition-transform after:duration-300">
-                Contact
-              </Link>
-            </li>
+            {navLinks.map(link => (
+              <li key={link.id}>
+                {link.isAnchor ? (
+                  <a 
+                    href={link.path} 
+                    className="relative font-medium text-gray-800 hover:text-[#005efe] transition-colors"
+                    onMouseEnter={() => setHoveredLink(link.id)}
+                    onMouseLeave={() => setHoveredLink(null)}
+                  >
+                    {link.label}
+                    <span 
+                      className={`absolute bottom-0 left-0 h-0.5 bg-[#005efe] transition-all duration-300 ease-out ${
+                        hoveredLink === link.id ? 'w-full' : 'w-0'
+                      }`}
+                    />
+                  </a>
+                ) : (
+                  <Link 
+                    to={link.path} 
+                    className="relative font-medium text-gray-800 hover:text-[#005efe] transition-colors"
+                    onMouseEnter={() => setHoveredLink(link.id)}
+                    onMouseLeave={() => setHoveredLink(null)}
+                  >
+                    {link.label}
+                    <span 
+                      className={`absolute bottom-0 left-0 h-0.5 bg-[#005efe] transition-all duration-300 ease-out ${
+                        hoveredLink === link.id ? 'w-full' : 'w-0'
+                      }`}
+                    />
+                  </Link>
+                )}
+              </li>
+            ))}
           </ul>
         </nav>
 
@@ -118,36 +144,29 @@ const Navbar: React.FC<NavbarProps> = ({ userName }) => {
             
             <nav className="flex-1">
               <ul className="space-y-6 text-xl">
-                <li>
-                  <Link 
-                    to="/" 
-                    className="flex items-center justify-between text-gray-800 hover:text-[#005efe] transition-colors"
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    Home
-                    <ChevronRight className="h-5 w-5" />
-                  </Link>
-                </li>
-                <li>
-                  <a 
-                    href="#projects" 
-                    className="flex items-center justify-between text-gray-800 hover:text-[#005efe] transition-colors"
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    Projects
-                    <ChevronRight className="h-5 w-5" />
-                  </a>
-                </li>
-                <li>
-                  <Link 
-                    to="/contact" 
-                    className="flex items-center justify-between text-gray-800 hover:text-[#005efe] transition-colors"
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    Contact
-                    <ChevronRight className="h-5 w-5" />
-                  </Link>
-                </li>
+                {navLinks.map(link => (
+                  <li key={link.id}>
+                    {link.isAnchor ? (
+                      <a
+                        href={link.path}
+                        className="flex items-center justify-between text-gray-800 hover:text-[#005efe] transition-colors"
+                        onClick={() => setMobileMenuOpen(false)}
+                      >
+                        {link.label}
+                        <ChevronRight className="h-5 w-5" />
+                      </a>
+                    ) : (
+                      <Link
+                        to={link.path}
+                        className="flex items-center justify-between text-gray-800 hover:text-[#005efe] transition-colors"
+                        onClick={() => setMobileMenuOpen(false)}
+                      >
+                        {link.label}
+                        <ChevronRight className="h-5 w-5" />
+                      </Link>
+                    )}
+                  </li>
+                ))}
               </ul>
             </nav>
           </div>

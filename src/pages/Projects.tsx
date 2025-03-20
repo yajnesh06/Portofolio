@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ArrowRight } from 'lucide-react';
+import AnimatedButton from '@/components/AnimatedButton';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -150,6 +151,16 @@ const Projects = () => {
                 </a>
               </div>
             ))}
+          </div>
+
+          <div className="flex justify-center mt-8">
+            <AnimatedButton 
+              variant="primary" 
+              icon
+              href="/contact"
+            >
+              Contact Me
+            </AnimatedButton>
           </div>
         </div>
       </section>

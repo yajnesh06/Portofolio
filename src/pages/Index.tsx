@@ -1,11 +1,12 @@
+
 import { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Button } from '@/components/ui/button';
 import { useNavigate } from 'react-router-dom';
 import InfiniteSkillsSlider from '@/components/InfiniteSkillsSlider';
 import { ArrowRight } from 'lucide-react';
+import AnimatedButton from '@/components/AnimatedButton';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -111,19 +112,19 @@ const Index = () => {
             <p className="text-lg text-gray-700">
               A passionate developer focused on creating beautiful and functional web experiences that make a difference.
             </p>
-            <div className="flex gap-4">
-              <Button 
-                className="bg-[#005efe] hover:bg-[#0050e0] text-white" 
+            <div className="flex flex-wrap gap-4">
+              <AnimatedButton 
+                variant="primary" 
+                icon
                 onClick={() => navigate('/contact')}
               >
                 Contact Me
-              </Button>
-              <Button 
-                variant="outline" 
-                className="border-[#005efe] text-[#005efe] hover:bg-[#005efe]/10"
+              </AnimatedButton>
+              <AnimatedButton 
+                variant="outline"
               >
                 View Resume
-              </Button>
+              </AnimatedButton>
             </div>
           </motion.div>
           

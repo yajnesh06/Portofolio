@@ -73,8 +73,18 @@
   }
 
   body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     @apply bg-[#ebe9e1] text-black antialiased;
     font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 700;
+  }
+
+  button, a {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   }
 
   html {
@@ -130,6 +140,43 @@
 
   .button-accent {
     @apply bg-[#005efe] text-white py-2 px-6 rounded-md transition-all duration-300 hover:bg-[#0050e0];
+    position: relative;
+    overflow: hidden;
+  }
+
+  .button-accent::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 0;
+    background-color: rgba(255, 255, 255, 0.2);
+    transition: height 0.3s ease;
+  }
+
+  .button-accent:hover::after {
+    height: 100%;
+  }
+
+  .nav-link {
+    position: relative;
+    display: inline-block;
+  }
+
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -2px;
+    left: 0;
+    background-color: #005efe;
+    transition: width 0.3s ease;
+  }
+
+  .nav-link:hover::after {
+    width: 100%;
   }
 
   .section-padding {
@@ -145,5 +192,14 @@
   .reveal.active {
     opacity: 1;
     transform: translateY(0);
+  }
+
+  .magnetic-button {
+    display: inline-block;
+    transition: transform 0.3s ease;
+  }
+
+  .magnetic-button:hover {
+    transform: translateY(-4px);
   }
 }

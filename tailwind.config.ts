@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -21,6 +20,7 @@ export default {
 		extend: {
 			fontFamily: {
 				'gilroy': ['Gilroy', 'sans-serif'],
+				'sans': ['"Helvetica Neue"', 'Helvetica', 'Arial', 'sans-serif'],
 			},
 			colors: {
 				border: 'hsl(var(--border))',
@@ -114,6 +114,23 @@ export default {
 				nameReveal: {
 					'0%': { clipPath: 'polygon(0 0, 0 0, 0 100%, 0 100%)', opacity: '0' },
 					'100%': { clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)', opacity: '1' }
+				},
+				'button-hover': {
+					'0%': { transform: 'translateY(0)' },
+					'50%': { transform: 'translateY(-4px)' },
+					'100%': { transform: 'translateY(0)' }
+				},
+				'link-underline': {
+					'0%': { width: '0%', left: '0%' },
+					'100%': { width: '100%', left: '0%' }
+				},
+				'magnetic-button': {
+					'0%': { transform: 'translateX(0) translateY(0)' },
+					'20%': { transform: 'translateX(-4px) translateY(-2px)' },
+					'40%': { transform: 'translateX(4px) translateY(2px)' },
+					'60%': { transform: 'translateX(-2px) translateY(4px)' },
+					'80%': { transform: 'translateX(2px) translateY(-4px)' },
+					'100%': { transform: 'translateX(0) translateY(0)' }
 				}
 			},
 			animation: {
@@ -126,7 +143,10 @@ export default {
 				'slide-down': 'slideDown 0.6s ease-out forwards',
 				'slide-left': 'slideLeft 0.6s ease-out forwards',
 				'slide-right': 'slideRight 0.6s ease-out forwards',
-				'name-reveal': 'nameReveal 1s ease-out forwards'
+				'name-reveal': 'nameReveal 1s ease-out forwards',
+				'button-hover': 'button-hover 1s ease-in-out infinite',
+				'link-underline': 'link-underline 0.3s ease-out forwards',
+				'magnetic-button': 'magnetic-button 0.3s ease-out'
 			}
 		}
 	},
