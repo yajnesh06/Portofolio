@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -29,9 +30,9 @@ export default {
 				background: 'hsl(var(--background))',
 				foreground: 'hsl(var(--foreground))',
 				accent: {
-					DEFAULT: '#4CAF50', // Updated to green accent
-					light: '#66BB6A',
-					dark: '#388E3C',
+					DEFAULT: '#8B5CF6', // Updated to purple accent
+					light: '#A78BFA',
+					dark: '#7C3AED',
 				},
 				cream: '#ebe9e1', // background color
 				primary: {
@@ -131,6 +132,15 @@ export default {
 					'60%': { transform: 'translateX(-2px) translateY(4px)' },
 					'80%': { transform: 'translateX(2px) translateY(-4px)' },
 					'100%': { transform: 'translateX(0) translateY(0)' }
+				},
+				'float': {
+					'0%': { transform: 'translateY(0)' },
+					'50%': { transform: 'translateY(-10px)' },
+					'100%': { transform: 'translateY(0)' }
+				},
+				'pulse': {
+					'0%, 100%': { opacity: '1', transform: 'scale(1)' },
+					'50%': { opacity: '0.85', transform: 'scale(0.95)' }
 				}
 			},
 			animation: {
@@ -146,7 +156,9 @@ export default {
 				'name-reveal': 'nameReveal 1s ease-out forwards',
 				'button-hover': 'button-hover 1s ease-in-out infinite',
 				'link-underline': 'link-underline 0.3s ease-out forwards',
-				'magnetic-button': 'magnetic-button 0.3s ease-out'
+				'magnetic-button': 'magnetic-button 0.3s ease-out',
+				'float': 'float 6s ease-in-out infinite',
+				'pulse': 'pulse 4s ease-in-out infinite'
 			}
 		}
 	},

@@ -17,7 +17,6 @@ const SmoothScroll: React.FC<SmoothScrollProps> = ({ children }) => {
       wheelMultiplier: 1,
       touchMultiplier: 2,
       infinite: false,
-      // Removed the smoothTouch property as it doesn't exist in LenisOptions
       lerp: 0.1, // Linear interpolation factor for smoother scrolling
     });
 

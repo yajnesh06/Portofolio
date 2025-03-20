@@ -49,9 +49,9 @@ const AnimatedButton = ({
   };
   
   const variantClasses = {
-    primary: 'bg-[#005efe] text-white hover:bg-[#004bd9]',
-    secondary: 'bg-[#ff3131] text-white hover:bg-[#e52e2e]',
-    outline: 'bg-transparent border-2 border-[#005efe] text-[#005efe] hover:bg-[#005efe]/10',
+    primary: 'bg-gradient-to-r from-[#8B5CF6] to-[#6366F1] text-white hover:shadow-lg',
+    secondary: 'bg-gradient-to-r from-[#EC4899] to-[#F472B6] text-white hover:shadow-lg',
+    outline: 'bg-transparent border-2 border-[#8B5CF6] text-[#8B5CF6] hover:bg-[#8B5CF6]/5',
   };
   
   const Component = href ? 'a' : 'button';
@@ -68,7 +68,7 @@ const AnimatedButton = ({
       <Component
         {...props}
         className={cn(
-          "relative inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-md font-medium text-sm transition-all duration-300",
+          "relative inline-flex items-center justify-center gap-2 px-8 py-3 rounded-full font-medium text-sm transition-all duration-300 shadow-md",
           variantClasses[variant],
           className
         )}
@@ -85,34 +85,23 @@ const AnimatedButton = ({
         {/* Magnetic Circle Effect */}
         {isHovered && (
           <span 
-            className="absolute w-5 h-5 rounded-full bg-white/20 transform -translate-x-1/2 -translate-y-1/2 pointer-events-none mix-blend-overlay transition-opacity duration:200"
+            className="absolute w-20 h-20 rounded-full transform -translate-x-1/2 -translate-y-1/2 pointer-events-none opacity-20"
             style={{ 
+              background: 'radial-gradient(circle, white 0%, transparent 70%)',
               left: `${cursorPosition.x}px`, 
               top: `${cursorPosition.y}px`,
-              opacity: 0.5
             }}
           />
         )}
         
-        {/* Bottom Bar Effect */}
+        {/* Shine effect */}
         <span 
-          className={`absolute bottom-0 left-0 w-full h-1 transform transition-all duration-300 ${
-            isHovered 
-              ? 'bg-white/20 translate-y-0' 
-              : 'bg-transparent translate-y-full'
-          }`} 
-        />
-        
-        {/* Gradient Hover Effect */}
-        <span 
-          className={`absolute inset-0 w-full h-full transition-transform duration-500 ease-out ${
-            isHovered ? 'h-full opacity-10' : 'h-0 opacity-0'
+          className={`absolute inset-0 w-full h-full transition-transform duration-700 ease-out ${
+            isHovered ? 'translate-x-0' : '-translate-x-full'
           }`}
           style={{
-            background: variant === 'primary' 
-              ? 'linear-gradient(to right, rgba(255,255,255,0.3), rgba(255,255,255,0))' 
-              : 'linear-gradient(to right, rgba(0,94,254,0.2), rgba(0,94,254,0))',
-            transformOrigin: 'bottom'
+            background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent)',
+            transformOrigin: 'left'
           }}
         />
       </Component>
