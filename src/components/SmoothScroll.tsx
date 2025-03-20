@@ -17,7 +17,7 @@ const SmoothScroll: React.FC<SmoothScrollProps> = ({ children }) => {
       wheelMultiplier: 1,
       touchMultiplier: 2,
       infinite: false,
-      smoothTouch: false, // Disable smooth scrolling for touch devices to prevent jank
+      // Removed the smoothTouch property as it doesn't exist in LenisOptions
       lerp: 0.1, // Linear interpolation factor for smoother scrolling
     });
 
@@ -41,7 +41,8 @@ const SmoothScroll: React.FC<SmoothScrollProps> = ({ children }) => {
   const scrollTo = (target: string) => {
     const element = document.querySelector(target);
     if (element && lenisRef.current) {
-      lenisRef.current.scrollTo(element);
+      // Cast the element to HTMLElement to satisfy TypeScript
+      lenisRef.current.scrollTo(element as HTMLElement);
     }
   };
 
