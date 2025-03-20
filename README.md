@@ -1,69 +1,117 @@
-# Welcome to your Lovable project
 
-## Project info
+# Portfolio Website
 
-**URL**: https://lovable.dev/projects/5e44a9f3-e0da-4b55-98be-477429380ed0
+A modern, animated portfolio website with smooth scrolling and interactive elements.
 
-## How can I edit this code?
+## Project Structure
 
-There are several ways of editing your application.
-
-**Use Lovable**
-
-Simply visit the [Lovable Project](https://lovable.dev/projects/5e44a9f3-e0da-4b55-98be-477429380ed0) and start prompting.
-
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
-
-**Edit a file directly in GitHub**
-
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with .
-
+This project is built with:
 - Vite
 - TypeScript
 - React
 - shadcn-ui
 - Tailwind CSS
+- Framer Motion
+- Lenis for smooth scrolling
+- GSAP for animations
 
-## How can I deploy this project?
+## Running in VSCode
 
-Simply open [Lovable](https://lovable.dev/projects/5e44a9f3-e0da-4b55-98be-477429380ed0) and click on Share -> Publish.
+### Prerequisites
 
-## I want to use a custom domain - is that possible?
+- Node.js (v16.0.0 or higher) - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+- VSCode with recommended extensions:
+  - ESLint
+  - Prettier
+  - TypeScript and JavaScript Language Features
+  - Tailwind CSS IntelliSense
 
-We don't support custom domains (yet). If you want to deploy your project under your own domain then we recommend using Netlify. Visit our docs for more details: [Custom domains](https://docs.lovable.dev/tips-tricks/custom-domain/)
+### Setup Instructions
+
+1. Clone the repository:
+   ```sh
+   git clone <repository-url>
+   cd <project-directory>
+   ```
+
+2. Install dependencies:
+   ```sh
+   npm install
+   ```
+
+3. Start the development server:
+   ```sh
+   npm run dev
+   ```
+
+4. Open your browser and navigate to:
+   ```
+   http://localhost:8080
+   ```
+
+### Recommended VSCode Settings
+
+Create or update `.vscode/settings.json` in your project root with:
+
+```json
+{
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "tailwindCSS.includeLanguages": {
+    "typescript": "javascript",
+    "typescriptreact": "javascript"
+  },
+  "tailwindCSS.experimental.classRegex": [
+    ["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"]
+  ]
+}
+```
+
+### Troubleshooting Common Issues
+
+1. **TypeScript Errors**: 
+   - Run `npm run tsc` to check for TypeScript errors
+   - Make sure your TypeScript version is compatible (v4.9.0 or higher)
+
+2. **Build Issues**:
+   - If you encounter build errors, try cleaning the cache with `npm run clean` (create this script in package.json if needed)
+   - Alternatively: `rm -rf node_modules/.vite`
+
+3. **Lenis Smooth Scrolling**:
+   - If smooth scrolling isn't working properly, check browser compatibility
+   - Disable any browser extensions that might interfere with scrolling
+
+4. **Animation Performance**:
+   - If animations are sluggish, check your browser's hardware acceleration settings
+   - Consider reducing animation complexity for lower-end devices
+
+## Development Notes
+
+- The project uses React Router for navigation
+- Framer Motion is used for page transitions and element animations
+- GSAP powers more complex animations
+- Tailwind CSS handles styling with some custom configurations
+
+## Deployment
+
+To build the project for production:
+
+```sh
+npm run build
+```
+
+This will generate optimized assets in the `dist` directory. You can then deploy these files to any static hosting service.
+
+## Additional Commands
+
+- `npm run lint` - Run ESLint to check for code quality issues
+- `npm run preview` - Preview the production build locally
+
+## Contributing
+
+1. Create a feature branch from main
+2. Make your changes
+3. Submit a pull request
