@@ -1,12 +1,54 @@
 
-import React, { useEffect } from 'react';
-import { motion } from 'framer-motion';
+import React, { useEffect, useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useToast } from "@/hooks/use-toast";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import * as z from "zod";
+import { 
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage 
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Button } from "@/components/ui/button";
+import { CheckCircle, Loader2, Send, AlertTriangle } from "lucide-react";
+import AnimatedButton from '@/components/AnimatedButton';
 
 gsap.registerPlugin(ScrollTrigger);
 
+// Form validation schema
+const formSchema = z.object({
+  name: z.string().min(2, { message: "Name must be at least 2 characters." }),
+  email: z.string().email({ message: "Please enter a valid email address." }),
+  subject: z.string().min(5, { message: "Subject must be at least 5 characters." }),
+  message: z.string().min(10, { message: "Message must be at least 10 characters." })
+});
+
+type FormValues = z.infer<typeof formSchema>;
+
 const Contact = () => {
+  const { toast } = useToast();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+
+  // Initialize form with react-hook-form
+  const form = useForm<FormValues>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      name: "",
+      email: "",
+      subject: "",
+      message: ""
+    },
+  });
+
   useEffect(() => {
     // Animation for contact form
     const formElements = document.querySelectorAll('.form-element');
@@ -37,6 +79,41 @@ const Contact = () => {
     };
   }, []);
 
+  // Form submission handler
+  const onSubmit = async (data: FormValues) => {
+    setIsSubmitting(true);
+    
+    try {
+      // Simulate API call with timeout
+      await new Promise(resolve => setTimeout(resolve, 1500));
+      
+      // Success state
+      setIsSuccess(true);
+      
+      toast({
+        title: "Message sent successfully!",
+        description: "We'll get back to you as soon as possible.",
+        variant: "default",
+      });
+      
+      // Reset form after success
+      setTimeout(() => {
+        form.reset();
+        setIsSuccess(false);
+      }, 2000);
+      
+    } catch (error) {
+      // Error state
+      toast({
+        title: "Something went wrong!",
+        description: "Please try again later.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <div className="min-h-screen pt-24">
       <section className="section-padding">
@@ -58,55 +135,133 @@ const Contact = () => {
             Have a project in mind? Let's discuss how I can help bring your vision to life.
           </motion.p>
           
-          <div className="bg-white p-8 rounded-lg shadow-md">
-            <form className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="bg-white p-8 rounded-lg shadow-lg">
+            <Form {...form}>
+              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="form-element">
+                    <FormField
+                      control={form.control}
+                      name="name"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel className="text-sm font-medium text-gray-700">Name</FormLabel>
+                          <FormControl>
+                            <Input 
+                              placeholder="Your name" 
+                              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent transition-colors"
+                              {...field} 
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  </div>
+                  <div className="form-element">
+                    <FormField
+                      control={form.control}
+                      name="email"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel className="text-sm font-medium text-gray-700">Email</FormLabel>
+                          <FormControl>
+                            <Input 
+                              placeholder="Your email"
+                              className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent transition-colors" 
+                              {...field} 
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  </div>
+                </div>
+
                 <div className="form-element">
-                  <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">Name</label>
-                  <input 
-                    type="text" 
-                    id="name" 
-                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent transition-colors"
-                    placeholder="Your name"
+                  <FormField
+                    control={form.control}
+                    name="subject"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="text-sm font-medium text-gray-700">Subject</FormLabel>
+                        <FormControl>
+                          <Input 
+                            placeholder="Subject" 
+                            className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent transition-colors"
+                            {...field} 
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
                   />
                 </div>
+
                 <div className="form-element">
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">Email</label>
-                  <input 
-                    type="email" 
-                    id="email" 
-                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent transition-colors"
-                    placeholder="Your email"
+                  <FormField
+                    control={form.control}
+                    name="message"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="text-sm font-medium text-gray-700">Message</FormLabel>
+                        <FormControl>
+                          <Textarea 
+                            placeholder="Your message" 
+                            className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent transition-colors min-h-[150px]"
+                            {...field} 
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
                   />
                 </div>
-              </div>
-              <div className="form-element">
-                <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-1">Subject</label>
-                <input 
-                  type="text" 
-                  id="subject" 
-                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent transition-colors"
-                  placeholder="Subject"
-                />
-              </div>
-              <div className="form-element">
-                <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">Message</label>
-                <textarea 
-                  id="message" 
-                  rows={5} 
-                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent transition-colors"
-                  placeholder="Your message"
-                ></textarea>
-              </div>
-              <div className="form-element">
-                <button 
-                  type="submit" 
-                  className="button-accent w-full md:w-auto"
-                >
-                  Send Message
-                </button>
-              </div>
-            </form>
+
+                <div className="form-element">
+                  <AnimatePresence mode="wait">
+                    {isSuccess ? (
+                      <motion.div
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 0.8 }}
+                        className="flex items-center justify-center py-2"
+                      >
+                        <div className="bg-green-50 text-green-600 px-4 py-2 rounded-full flex items-center space-x-2">
+                          <CheckCircle className="h-5 w-5" />
+                          <span>Message sent successfully!</span>
+                        </div>
+                      </motion.div>
+                    ) : (
+                      <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                      >
+                        <Button 
+                          type="submit" 
+                          className="w-full md:w-auto bg-accent hover:bg-accent-dark text-white"
+                          disabled={isSubmitting}
+                        >
+                          {isSubmitting ? (
+                            <>
+                              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                              Sending...
+                            </>
+                          ) : (
+                            <>
+                              <Send className="mr-2 h-4 w-4" />
+                              Send Message
+                            </>
+                          )}
+                        </Button>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              </form>
+            </Form>
           </div>
         </div>
       </section>
