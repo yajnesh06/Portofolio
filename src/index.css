@@ -111,6 +111,7 @@
     pointer-events: none;
   }
 
+  /* Improved text accent gradient */
   .text-accent {
     background: linear-gradient(135deg, #005efe 0%, #003cb6 100%);
     -webkit-background-clip: text;
@@ -126,8 +127,10 @@
     border-color: #005efe;
   }
 
+  /* Improved card animations */
   .project-card {
-    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform;
   }
 
   .project-card:hover {
@@ -138,10 +141,27 @@
     filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.1));
   }
 
+  /* Enhanced button styles with inspiration from j-vers.com */
   .button-accent {
-    @apply bg-[#005efe] text-white py-2 px-6 rounded-md transition-all duration-300 hover:bg-[#0050e0];
+    @apply bg-[#005efe] text-white py-2 px-6 rounded-md transition-all duration-500 ease-out hover:bg-[#0050e0];
     position: relative;
     overflow: hidden;
+  }
+
+  .button-accent::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 0;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.2) 0%, transparent 100%);
+    transition: height 0.5s cubic-bezier(.16,1,.3,1);
+    transform-origin: top;
+  }
+
+  .button-accent:hover::before {
+    height: 100%;
   }
 
   .button-accent::after {
@@ -150,43 +170,70 @@
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 0;
-    background-color: rgba(255, 255, 255, 0.2);
-    transition: height 0.3s ease;
+    height: 2px;
+    background-color: rgba(255, 255, 255, 0.5);
+    transform: scaleX(0);
+    transition: transform 0.3s cubic-bezier(.16,1,.3,1);
+    transform-origin: right;
   }
 
   .button-accent:hover::after {
-    height: 100%;
+    transform: scaleX(1);
+    transform-origin: left;
   }
 
+  /* Improved nav link animations inspired by j-vers.com */
   .nav-link {
     position: relative;
     display: inline-block;
+    overflow: hidden;
   }
 
   .nav-link::after {
     content: '';
     position: absolute;
-    width: 0;
+    width: 100%;
     height: 2px;
     bottom: -2px;
     left: 0;
     background-color: #005efe;
-    transition: width 0.3s ease;
+    transform: scaleX(0);
+    transition: transform 0.35s cubic-bezier(.16,1,.3,1);
+    transform-origin: right;
   }
 
   .nav-link:hover::after {
-    width: 100%;
+    transform: scaleX(1);
+    transform-origin: left;
   }
 
+  /* Text reveal animation */
+  .reveal-text {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+  }
+
+  .reveal-text span {
+    display: block;
+    transform: translateY(100%);
+    transition: transform 0.6s cubic-bezier(.16,1,.3,1);
+  }
+
+  .reveal-text.in-view span {
+    transform: translateY(0);
+  }
+
+  /* Section padding utility */
   .section-padding {
     @apply py-16 px-4 md:px-12 lg:px-24;
   }
 
+  /* Enhanced reveal animation */
   .reveal {
     opacity: 0;
     transform: translateY(30px);
-    transition: all 1s ease;
+    transition: all 1s cubic-bezier(.16,1,.3,1);
   }
 
   .reveal.active {
@@ -194,9 +241,11 @@
     transform: translateY(0);
   }
 
+  /* Enhanced magnetic button */
   .magnetic-button {
     display: inline-block;
-    transition: transform 0.3s ease;
+    transition: transform 0.4s cubic-bezier(.16,1,.3,1);
+    will-change: transform;
   }
 
   .magnetic-button:hover {

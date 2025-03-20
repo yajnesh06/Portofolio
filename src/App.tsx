@@ -31,13 +31,17 @@ const App = () => {
     if (showIntro) {
       document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = "";
+      // Small delay before enabling scroll to prevent jarring transition
+      setTimeout(() => {
+        document.body.style.overflow = "";
+      }, 300);
     }
   }, [showIntro]);
 
   const handleIntroComplete = () => {
     setShowIntro(false);
-    setTimeout(() => setContentVisible(true), 300);
+    // Increased delay to ensure smoother transition
+    setTimeout(() => setContentVisible(true), 500);
   };
 
   return (
@@ -46,26 +50,31 @@ const App = () => {
         <Toaster />
         <Sonner />
         <BrowserRouter>
-          <IntroAnimation 
-            userName={userName} 
-            onComplete={handleIntroComplete} 
-          />
+          {showIntro && (
+            <IntroAnimation 
+              userName={userName} 
+              onComplete={handleIntroComplete} 
+            />
+          )}
           
           <AnimatePresence>
             {contentVisible && (
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ duration: 0.5 }}
+                transition={{ duration: 0.7, ease: "easeInOut" }}
+                className="w-full h-full"
               >
                 <SmoothScroll>
                   <Navbar userName={userName} />
-                  <Routes>
-                    <Route path="/" element={<Index />} />
-                    <Route path="/projects" element={<Projects />} />
-                    <Route path="/contact" element={<Contact />} />
-                    <Route path="*" element={<NotFound />} />
-                  </Routes>
+                  <main className="pt-20"> {/* Added padding-top to account for navbar */}
+                    <Routes>
+                      <Route path="/" element={<Index />} />
+                      <Route path="/projects" element={<Projects />} />
+                      <Route path="/contact" element={<Contact />} />
+                      <Route path="*" element={<NotFound />} />
+                    </Routes>
+                  </main>
                   <Footer />
                 </SmoothScroll>
               </motion.div>

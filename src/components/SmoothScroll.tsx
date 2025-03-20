@@ -10,13 +10,15 @@ const SmoothScroll: React.FC<SmoothScrollProps> = ({ children }) => {
   const lenisRef = useRef<Lenis | null>(null);
 
   useEffect(() => {
+    // Initialize Lenis with improved settings
     const lenis = new Lenis({
       duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      // Removed 'direction', 'gestureDirection', and 'smooth' properties as they don't exist in LenisOptions type
       wheelMultiplier: 1,
       touchMultiplier: 2,
       infinite: false,
+      smoothTouch: false, // Disable smooth scrolling for touch devices to prevent jank
+      lerp: 0.1, // Linear interpolation factor for smoother scrolling
     });
 
     function raf(time: number) {
@@ -27,12 +29,23 @@ const SmoothScroll: React.FC<SmoothScrollProps> = ({ children }) => {
     requestAnimationFrame(raf);
     lenisRef.current = lenis;
 
+    // Reset scroll position on component mount
+    window.scrollTo(0, 0);
+
     return () => {
       lenis.destroy();
     };
   }, []);
 
-  return <>{children}</>;
+  // Function to scroll to a specific element
+  const scrollTo = (target: string) => {
+    const element = document.querySelector(target);
+    if (element && lenisRef.current) {
+      lenisRef.current.scrollTo(element);
+    }
+  };
+
+  return <div className="smooth-scroll">{children}</div>;
 };
 
 export default SmoothScroll;

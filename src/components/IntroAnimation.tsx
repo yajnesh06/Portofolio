@@ -49,12 +49,13 @@ const IntroAnimation: React.FC<IntroAnimationProps> = ({ userName, onComplete })
   return (
     <motion.div
       className="fixed inset-0 flex items-center justify-center bg-black z-50"
+      initial={{ opacity: 1 }}
       animate={typingComplete ? { opacity: 0 } : { opacity: 1 }}
       transition={{ duration: 0.5, ease: "easeInOut" }}
     >
       <div className="text-center">
         <motion.h1 
-          className="text-5xl md:text-7xl font-bold font-gilroy flex items-center justify-center"
+          className="text-5xl md:text-7xl font-bold font-sans flex items-center justify-center"
           initial={{ scale: 0.9, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 0.6, ease: "easeOut" }}

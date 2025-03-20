@@ -22,6 +22,7 @@ const AnimatedButton = ({
 }: AnimatedButtonProps) => {
   const buttonRef = useRef<HTMLDivElement>(null);
   const [isHovered, setIsHovered] = useState(false);
+  const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
   
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!buttonRef.current) return;
@@ -29,6 +30,8 @@ const AnimatedButton = ({
     const rect = buttonRef.current.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
+    
+    setCursorPosition({ x, y });
     
     const centerX = rect.width / 2;
     const centerY = rect.height / 2;
@@ -79,12 +82,38 @@ const AnimatedButton = ({
           )}
         </span>
         
+        {/* Magnetic Circle Effect */}
+        {isHovered && (
+          <span 
+            className="absolute w-5 h-5 rounded-full bg-white/20 transform -translate-x-1/2 -translate-y-1/2 pointer-events-none mix-blend-overlay transition-opacity duration:200"
+            style={{ 
+              left: `${cursorPosition.x}px`, 
+              top: `${cursorPosition.y}px`,
+              opacity: 0.5
+            }}
+          />
+        )}
+        
+        {/* Bottom Bar Effect */}
         <span 
           className={`absolute bottom-0 left-0 w-full h-1 transform transition-all duration-300 ${
             isHovered 
               ? 'bg-white/20 translate-y-0' 
               : 'bg-transparent translate-y-full'
           }`} 
+        />
+        
+        {/* Gradient Hover Effect */}
+        <span 
+          className={`absolute inset-0 w-full h-full transition-transform duration-500 ease-out ${
+            isHovered ? 'h-full opacity-10' : 'h-0 opacity-0'
+          }`}
+          style={{
+            background: variant === 'primary' 
+              ? 'linear-gradient(to right, rgba(255,255,255,0.3), rgba(255,255,255,0))' 
+              : 'linear-gradient(to right, rgba(0,94,254,0.2), rgba(0,94,254,0))',
+            transformOrigin: 'bottom'
+          }}
         />
       </Component>
     </div>
