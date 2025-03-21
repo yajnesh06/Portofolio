@@ -5,7 +5,7 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useNavigate } from 'react-router-dom';
 import InfiniteSkillsSlider from '@/components/InfiniteSkillsSlider';
-import { ArrowRight, ExternalLink, Github, Sparkles } from 'lucide-react';
+import { ArrowRight, ExternalLink, Github, Sparkles, Download, Code } from 'lucide-react';
 import AnimatedButton from '@/components/AnimatedButton';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -89,8 +89,9 @@ const Index = () => {
       description: "A modern online shopping experience with intuitive navigation and seamless checkout.",
       image: "https://images.unsplash.com/photo-1661956602116-aa6865609028?ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=764&q=80",
       date: "2025.02.21",
-      category: "Career",
-      technologies: ["React", "Node.js", "MongoDB", "Stripe"]
+      category: "Development",
+      technologies: ["React", "Node.js", "MongoDB", "Stripe"],
+      featured: true
     },
     {
       id: 2,
@@ -98,7 +99,7 @@ const Index = () => {
       description: "Interactive analytics dashboard for monitoring financial metrics and performance.",
       image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
       date: "2025.01.24",
-      category: "Trend & Vision",
+      category: "Analytics",
       technologies: ["React", "D3.js", "Firebase", "TailwindCSS"]
     },
     {
@@ -107,7 +108,7 @@ const Index = () => {
       description: "A feature-rich social platform focusing on community engagement and content sharing.",
       image: "https://images.unsplash.com/photo-1600096194534-95cf5ece04cf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
       date: "2024.08.04",
-      category: "Press Release",
+      category: "Social",
       technologies: ["Next.js", "GraphQL", "Auth0", "Cloudinary"]
     },
   ];
@@ -160,8 +161,10 @@ const Index = () => {
               </AnimatedButton>
               <AnimatedButton 
                 variant="outline"
+                onClick={() => window.open('/resume.pdf', '_blank')}
               >
-                View Resume
+                <Download size={16} className="mr-2" />
+                Download Resume
               </AnimatedButton>
             </div>
           </motion.div>
@@ -220,7 +223,7 @@ const Index = () => {
             {projects.map((project) => (
               <motion.div 
                 key={project.id}
-                className="project-card card-3d h-full"
+                className={`project-card card-3d h-full ${project.featured ? 'border-l-4 border-l-purple-500' : ''}`}
                 whileHover={{ y: -10 }}
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -238,6 +241,12 @@ const Index = () => {
                   <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm text-purple-700 px-4 py-2 rounded-full z-10 font-medium text-sm">
                     {project.category}
                   </div>
+                  
+                  {project.featured && (
+                    <div className="absolute top-4 right-4 bg-purple-600 text-white px-3 py-1 rounded-full text-xs font-medium">
+                      Featured
+                    </div>
+                  )}
                 </div>
                 
                 <div className="p-6">
@@ -245,7 +254,7 @@ const Index = () => {
                     <span className="text-gray-500">{project.date}</span>
                   </div>
                   
-                  <h3 className="text-xl md:text-2xl font-bold mb-3 transition-colors duration-300">
+                  <h3 className="text-xl md:text-2xl font-bold mb-3 transition-colors duration-300 group-hover:text-purple-600">
                     {project.title}
                   </h3>
                   
@@ -275,6 +284,9 @@ const Index = () => {
                         <Github size={16} className="text-gray-700" />
                       </a>
                       <a href="#" className="p-2 bg-gray-100 hover:bg-gray-200 rounded-full transition-colors">
+                        <Code size={16} className="text-gray-700" />
+                      </a>
+                      <a href="#" className="p-2 bg-gray-100 hover:bg-gray-200 rounded-full transition-colors">
                         <ExternalLink size={16} className="text-gray-700" />
                       </a>
                     </div>
@@ -293,6 +305,38 @@ const Index = () => {
               View All Projects
             </AnimatedButton>
           </div>
+        </div>
+      </section>
+      
+      {/* Call to Action */}
+      <section className="py-20 px-4 relative overflow-hidden">
+        <div className="container mx-auto max-w-4xl relative z-10">
+          <motion.div 
+            className="bg-gradient-to-r from-purple-500/10 to-indigo-500/10 backdrop-blur-sm p-12 rounded-3xl border border-purple-200/30 relative"
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            <div className="absolute -top-10 -right-10 w-40 h-40 bg-gradient-to-br from-purple-400/20 to-indigo-400/20 rounded-full blur-3xl"></div>
+            <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-gradient-to-tr from-pink-400/20 to-purple-400/20 rounded-full blur-3xl"></div>
+            
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center">
+              Ready to <span className="gradient-heading">collaborate</span>?
+            </h2>
+            <p className="text-gray-700 text-center mb-8 max-w-2xl mx-auto">
+              I'm always open to discussing new projects, creative ideas or opportunities to be part of your vision.
+            </p>
+            <div className="flex justify-center">
+              <AnimatedButton
+                variant="primary"
+                icon
+                onClick={() => navigate('/contact')}
+              >
+                Let's Connect
+              </AnimatedButton>
+            </div>
+          </motion.div>
         </div>
       </section>
     </div>

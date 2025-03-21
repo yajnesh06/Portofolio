@@ -47,7 +47,7 @@ const IntroAnimation: React.FC<IntroAnimationProps> = ({ userName, onComplete })
   }, [userName, onComplete]);
 
   // Particles configuration
-  const particles = Array.from({ length: 20 }).map((_, i) => ({
+  const particles = Array.from({ length: 30 }).map((_, i) => ({
     id: i,
     x: Math.random() * 100,
     y: Math.random() * 100,
@@ -78,14 +78,14 @@ const IntroAnimation: React.FC<IntroAnimationProps> = ({ userName, onComplete })
           }}
           initial={{ opacity: 0, scale: 0 }}
           animate={{ 
-            opacity: [0, 0.5, 0], 
+            opacity: [0, 0.6, 0], 
             scale: [0, 1, 0],
-            x: [0, Math.random() * 100 - 50],
-            y: [0, Math.random() * 100 - 50],
+            x: [0, Math.random() * 120 - 60],
+            y: [0, Math.random() * 120 - 60],
           }}
           transition={{ 
             repeat: Infinity, 
-            duration: 3 + Math.random() * 2,
+            duration: 3 + Math.random() * 3,
             delay: particle.delay,
             ease: "easeInOut" 
           }}
@@ -122,7 +122,7 @@ const IntroAnimation: React.FC<IntroAnimationProps> = ({ userName, onComplete })
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               backgroundClip: "text",
-              filter: "drop-shadow(0 0 8px rgba(139, 92, 246, 0.5))"
+              filter: "drop-shadow(0 0 12px rgba(139, 92, 246, 0.6))"
             }}
           >
             {displayedName}
@@ -138,7 +138,7 @@ const IntroAnimation: React.FC<IntroAnimationProps> = ({ userName, onComplete })
         
         {/* Subtitle that appears after typing */}
         <motion.p
-          className="text-[#8B5CF6]/80 mt-4 text-lg"
+          className="text-[#8B5CF6]/90 mt-4 text-lg md:text-xl font-medium"
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: typingComplete ? 1 : 0, y: typingComplete ? 0 : 10 }}
           transition={{ duration: 0.4, ease: "easeOut" }}

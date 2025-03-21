@@ -2,6 +2,7 @@
 import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { motion } from 'framer-motion';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -64,23 +65,26 @@ const InfiniteSkillsSlider: React.FC<InfiniteSkillsSliderProps> = ({ skills }) =
   return (
     <div 
       ref={sliderRef} 
-      className="overflow-hidden w-full relative py-10 bg-[#ebe9e1]"
+      className="overflow-hidden w-full relative py-10 bg-gradient-to-r from-white/80 to-purple-50/80"
     >
+      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-purple-100/20 to-transparent"></div>
       <div 
         ref={trackRef} 
         className="flex items-center space-x-12 py-4 will-change-transform"
       >
         {/* Duplicate the skills array to create a seamless loop */}
         {[...skills, ...skills].map((skill, index) => (
-          <div 
+          <motion.div 
             key={`skill-${index}`} 
             className="flex flex-col items-center justify-center px-6 min-w-[150px]"
+            whileHover={{ y: -5 }}
+            transition={{ duration: 0.3 }}
           >
-            <div className="w-16 h-16 mb-3 flex items-center justify-center bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
+            <div className="w-16 h-16 mb-3 flex items-center justify-center bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 border border-purple-100/50">
               <span className="text-2xl">{skill.icon}</span>
             </div>
             <span className="text-gray-800 font-medium whitespace-nowrap">{skill.name}</span>
-          </div>
+          </motion.div>
         ))}
       </div>
     </div>

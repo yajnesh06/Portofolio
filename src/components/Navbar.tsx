@@ -66,10 +66,11 @@ const Navbar: React.FC<NavbarProps> = ({ userName }) => {
         >
           <motion.span 
             style={{
-              background: "linear-gradient(135deg, #005efe 0%, #003cb6 100%)",
+              background: "linear-gradient(135deg, #8B5CF6 0%, #6366F1 100%)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               backgroundClip: "text",
+              filter: "drop-shadow(0 0 2px rgba(139, 92, 246, 0.3))"
             }}
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
@@ -93,13 +94,13 @@ const Navbar: React.FC<NavbarProps> = ({ userName }) => {
                 {link.isAnchor ? (
                   <a 
                     href={link.path} 
-                    className="relative font-medium text-gray-800 hover:text-[#005efe] transition-colors duration-300"
+                    className="relative font-medium text-gray-800 hover:text-[#8B5CF6] transition-colors duration-300"
                     onMouseEnter={() => setHoveredLink(link.id)}
                     onMouseLeave={() => setHoveredLink(null)}
                   >
                     {link.label}
                     <span 
-                      className={`absolute bottom-0 left-0 h-0.5 bg-[#005efe] transition-all duration-300 ease-out ${
+                      className={`absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-[#8B5CF6] to-[#6366F1] transition-all duration-300 ease-out ${
                         hoveredLink === link.id ? 'w-full' : 'w-0'
                       }`}
                       style={{
@@ -111,13 +112,13 @@ const Navbar: React.FC<NavbarProps> = ({ userName }) => {
                 ) : (
                   <Link 
                     to={link.path} 
-                    className="relative font-medium text-gray-800 hover:text-[#005efe] transition-colors duration-300"
+                    className="relative font-medium text-gray-800 hover:text-[#8B5CF6] transition-colors duration-300"
                     onMouseEnter={() => setHoveredLink(link.id)}
                     onMouseLeave={() => setHoveredLink(null)}
                   >
                     {link.label}
                     <span 
-                      className={`absolute bottom-0 left-0 h-0.5 bg-[#005efe] transition-all duration-300 ease-out ${
+                      className={`absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-[#8B5CF6] to-[#6366F1] transition-all duration-300 ease-out ${
                         hoveredLink === link.id ? 'w-full' : 'w-0'
                       }`}
                       style={{
@@ -149,7 +150,7 @@ const Navbar: React.FC<NavbarProps> = ({ userName }) => {
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div 
-            className="fixed inset-0 bg-[#ebe9e1] z-50 md:hidden"
+            className="fixed inset-0 bg-white/95 backdrop-blur-md z-50 md:hidden"
             initial={{ opacity: 0, x: '100%' }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: '100%' }}
@@ -160,10 +161,11 @@ const Navbar: React.FC<NavbarProps> = ({ userName }) => {
                 <motion.span 
                   className="text-xl font-medium"
                   style={{
-                    background: "linear-gradient(135deg, #005efe 0%, #003cb6 100%)",
+                    background: "linear-gradient(135deg, #8B5CF6 0%, #6366F1 100%)",
                     WebkitBackgroundClip: "text",
                     WebkitTextFillColor: "transparent",
                     backgroundClip: "text",
+                    filter: "drop-shadow(0 0 2px rgba(139, 92, 246, 0.3))"
                   }}
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
@@ -193,7 +195,7 @@ const Navbar: React.FC<NavbarProps> = ({ userName }) => {
                       {link.isAnchor ? (
                         <a
                           href={link.path}
-                          className="flex items-center justify-between text-gray-800 hover:text-[#005efe] transition-colors duration-300"
+                          className="flex items-center justify-between text-gray-800 hover:text-[#8B5CF6] transition-colors duration-300"
                           onClick={() => setMobileMenuOpen(false)}
                         >
                           {link.label}
@@ -208,7 +210,7 @@ const Navbar: React.FC<NavbarProps> = ({ userName }) => {
                       ) : (
                         <Link
                           to={link.path}
-                          className="flex items-center justify-between text-gray-800 hover:text-[#005efe] transition-colors duration-300"
+                          className="flex items-center justify-between text-gray-800 hover:text-[#8B5CF6] transition-colors duration-300"
                           onClick={() => setMobileMenuOpen(false)}
                         >
                           {link.label}
