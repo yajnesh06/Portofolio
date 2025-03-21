@@ -57,6 +57,29 @@ This project is built with:
    http://localhost:8080
    ```
 
+### Security Notice
+
+This project may show npm audit warnings related to esbuild (a dependency of Vite). These are moderate severity issues that only affect the development server, not your production build. The warning indicates that in development mode, any website could potentially send requests to your dev server.
+
+#### Handling Security Warnings
+
+1. **For development**: 
+   - This vulnerability only affects local development, so it's generally safe to continue working.
+   - Only run the development server on trusted networks.
+   - Do not expose your development server to the internet.
+
+2. **For production**:
+   - The vulnerability does not affect production builds.
+   - Use `npm run build` to create a production version that does not have this vulnerability.
+
+3. **If you need to fix audit warnings**:
+   - Some warnings cannot be fixed until the upstream packages release updates.
+   - You can suppress non-actionable warnings with:
+     ```sh
+     npm audit --production
+     ```
+   - This shows only issues that would affect your production deployment.
+
 ### Dependency Version Notes
 
 If you encounter compatibility issues, ensure these specific package versions are used:
