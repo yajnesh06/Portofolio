@@ -14,7 +14,7 @@ const IntroAnimation: React.FC<IntroAnimationProps> = ({ userName, onComplete })
 
   useEffect(() => {
     let index = 0;
-    const typingSpeed = 80; // Faster typing speed
+    const typingSpeed = 120; // Slower typing speed
     
     // Typing animation
     const typingInterval = setInterval(() => {
@@ -25,11 +25,11 @@ const IntroAnimation: React.FC<IntroAnimationProps> = ({ userName, onComplete })
         clearInterval(typingInterval);
         setTypingComplete(true);
         
-        // Shorter wait time before exit
+        // Longer wait time (3 seconds) before exit
         setTimeout(() => {
           setShowCursor(false);
           setTimeout(onComplete, 400);
-        }, 800);
+        }, 3000);
       }
     }, typingSpeed);
     
@@ -58,10 +58,11 @@ const IntroAnimation: React.FC<IntroAnimationProps> = ({ userName, onComplete })
   return (
     <motion.div
       className="fixed inset-0 flex items-center justify-center bg-black z-50 overflow-hidden"
-      initial={{ opacity: 1 }}
-      animate={typingComplete ? { opacity: 0 } : { opacity: 1 }}
-      transition={{ duration: 0.6, ease: "easeInOut" }}
-      style={{ position: 'relative' }} // Addressing framer-motion warning
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 1, ease: "easeInOut" }}
+      style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, width: '100vw', height: '100vh' }}
     >
       {/* Animated particles */}
       {particles.map(particle => (

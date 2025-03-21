@@ -34,14 +34,14 @@ const App = () => {
       // Small delay before enabling scroll to prevent jarring transition
       setTimeout(() => {
         document.body.style.overflow = "";
-      }, 300);
+      }, 500);
     }
   }, [showIntro]);
 
   const handleIntroComplete = () => {
     setShowIntro(false);
     // Increased delay to ensure smoother transition
-    setTimeout(() => setContentVisible(true), 500);
+    setTimeout(() => setContentVisible(true), 800);
   };
 
   return (
@@ -50,19 +50,21 @@ const App = () => {
         <Toaster />
         <Sonner />
         <BrowserRouter>
-          {showIntro && (
-            <IntroAnimation 
-              userName={userName} 
-              onComplete={handleIntroComplete} 
-            />
-          )}
+          <AnimatePresence mode="wait">
+            {showIntro && (
+              <IntroAnimation 
+                userName={userName} 
+                onComplete={handleIntroComplete} 
+              />
+            )}
+          </AnimatePresence>
           
           <AnimatePresence>
             {contentVisible && (
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ duration: 0.7, ease: "easeInOut" }}
+                transition={{ duration: 1, ease: "easeInOut" }}
                 className="w-full h-full"
               >
                 <SmoothScroll>
