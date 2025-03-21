@@ -39,15 +39,41 @@ This project is built with:
    npm install
    ```
 
-3. Start the development server:
+3. If you encounter dependency issues, try the following:
+   ```sh
+   # Force clean install with exact versions
+   rm -rf node_modules
+   npm cache clean --force
+   npm install --legacy-peer-deps
+   ```
+
+4. Start the development server:
    ```sh
    npm run dev
    ```
 
-4. Open your browser and navigate to:
+5. Open your browser and navigate to:
    ```
    http://localhost:8080
    ```
+
+### Dependency Version Notes
+
+If you encounter compatibility issues, ensure these specific package versions are used:
+
+```json
+{
+  "react": "^18.2.0",
+  "react-dom": "^18.2.0",
+  "@radix-ui/react-toast": "^1.1.3",
+  "framer-motion": "^10.16.4",
+  "gsap": "^3.12.2",
+  "next-themes": "^0.2.1",
+  "@studio-freight/lenis": "^1.0.23",
+  "tailwindcss": "^3.3.3",
+  "@tanstack/react-query": "^4.35.3"
+}
+```
 
 ### Recommended VSCode Settings
 
@@ -72,19 +98,23 @@ Create or update `.vscode/settings.json` in your project root with:
 
 ### Troubleshooting Common Issues
 
-1. **TypeScript Errors**: 
-   - Run `npm run tsc` to check for TypeScript errors
+1. **Dependency Conflicts**: 
+   - If you encounter errors related to peer dependencies, try installing with the `--legacy-peer-deps` flag
+   - For specific component errors (especially shadcn components), check package versions in the list above
+
+2. **TypeScript Errors**: 
+   - Run `npx tsc --noEmit` to check for TypeScript errors
    - Make sure your TypeScript version is compatible (v4.9.0 or higher)
 
-2. **Build Issues**:
+3. **Build Issues**:
    - If you encounter build errors, try cleaning the cache with `npm run clean` (create this script in package.json if needed)
    - Alternatively: `rm -rf node_modules/.vite`
 
-3. **Lenis Smooth Scrolling**:
+4. **Lenis Smooth Scrolling**:
    - If smooth scrolling isn't working properly, check browser compatibility
    - Disable any browser extensions that might interfere with scrolling
 
-4. **Animation Performance**:
+5. **Animation Performance**:
    - If animations are sluggish, check your browser's hardware acceleration settings
    - Consider reducing animation complexity for lower-end devices
 
