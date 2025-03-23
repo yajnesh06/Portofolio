@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, ChevronRight } from 'lucide-react';
 
@@ -12,6 +12,7 @@ const Navbar: React.FC<NavbarProps> = ({ userName }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [hoveredLink, setHoveredLink] = useState<string | null>(null);
   const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 10);
@@ -30,6 +31,15 @@ const Navbar: React.FC<NavbarProps> = ({ userName }) => {
   ];
 
   const isActive = (path: string) => location.pathname === path;
+  
+  // Custom navigation handler that scrolls to top
+  const handleNavigation = (path: string) => {
+    navigate(path);
+    window.scrollTo({
+      top: 0,
+      behavior: 'auto'
+    });
+  };
 
   return (
     <motion.header
@@ -41,34 +51,35 @@ const Navbar: React.FC<NavbarProps> = ({ userName }) => {
       transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
     >
       <div className="container mx-auto px-6 flex justify-between items-center">
-        <Link to="/" 
-              className="text-3xl font-medium flex items-center"
-            >
-              <motion.span 
-                style={{
-                  background: "linear-gradient(135deg, #8B5CF6 0%, #6366F1 100%)",
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                  backgroundClip: "text",
-                  filter: "drop-shadow(0 0 2px rgba(139, 92, 246, 0.3))"
-                }}
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                whileHover={{ scale: 1.05 }}
-                className="text-xl md:text-3xl font- font-bold"
-              >
-                {userName}
-              </motion.span>
-            </Link>
+        <div 
+          onClick={() => handleNavigation('/')}
+          className="text-3xl font-medium flex items-center cursor-pointer"
+        >
+          <motion.span 
+            style={{
+              background: "linear-gradient(135deg, #8B5CF6 0%, #6366F1 100%)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              backgroundClip: "text",
+              filter: "drop-shadow(0 0 2px rgba(139, 92, 246, 0.3))"
+            }}
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+            whileHover={{ scale: 1.05 }}
+            className="text-xl md:text-3xl font- font-bold"
+          >
+            {userName}
+          </motion.span>
+        </div>
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-6">
           {navLinks.map((link, i) => (
             <motion.div key={link.id} className="relative">
-              <Link
-                to={link.path}
-                className={`relative px-4 py-2  text-3xl font-semibold transition-colors ${
+              <div
+                onClick={() => handleNavigation(link.path)}
+                className={`relative px-4 py-2 text-3xl font-semibold transition-colors cursor-pointer ${
                   isActive(link.path) ? 'text-indigo-600' : 'text-gray-800'
                 }`}
                 onMouseEnter={() => setHoveredLink(link.id)}
@@ -81,7 +92,7 @@ const Navbar: React.FC<NavbarProps> = ({ userName }) => {
                   animate={{ width: hoveredLink === link.id ? '100%' : 0 }}
                   transition={{ duration: 0.3, ease: 'easeInOut' }}
                 />
-              </Link>
+              </div>
             </motion.div>
           ))}
         </nav>
@@ -135,14 +146,16 @@ const Navbar: React.FC<NavbarProps> = ({ userName }) => {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: i * 0.1, duration: 0.5 }}
                   >
-                    <Link
-                      to={link.path}
-                      className="flex items-center justify-between p-4 rounded-xl w-full bg-gray-50 hover:bg-indigo-500 hover:text-white transition-all duration-300"
-                      onClick={() => setMobileMenuOpen(false)}
+                    <div
+                      onClick={() => {
+                        handleNavigation(link.path);
+                        setMobileMenuOpen(false);
+                      }}
+                      className="flex items-center justify-between p-4 rounded-xl w-full bg-gray-50 hover:bg-indigo-500 hover:text-white transition-all duration-300 cursor-pointer"
                     >
                       <span className="text-lg font-medium">{link.label}</span>
                       <ChevronRight className="h-5 w-5" />
-                    </Link>
+                    </div>
                   </motion.li>
                 ))}
               </ul>

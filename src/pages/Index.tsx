@@ -20,6 +20,17 @@ const Index = () => {
   
   const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
   
+  // Function to handle navigation with scroll reset
+  const handleNavigation = (path: string) => {
+    // First navigate to the path
+    navigate(path);
+    // Then manually scroll to top
+    window.scrollTo({
+      top: 0,
+      behavior: 'instant'
+    });
+  };
+
   useEffect(() => {
     // Animation for project cards
     const projectCards = document.querySelectorAll('.project-card');
@@ -89,35 +100,42 @@ const Index = () => {
   
   
   
-
   const projects = [
     {
       id: 1,
-      title: "E-Commerce Platform",
-      description: "A modern online shopping experience with intuitive navigation and seamless checkout.",
-      image: "https://images.unsplash.com/photo-1661956602116-aa6865609028?ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=764&q=80",
-      
-      technologies: ["React", "Node.js", "MongoDB", "Stripe"],
-      featured: true
+      title: "Globe Trek AI",
+      description: "Craft your Dream getaways with this AI powered Travel Planner.",
+      image: "/pic1.png",
+      link: "https://globetrekai.vercel.app/"
     },
     {
       id: 2,
-      title: "Finance Dashboard",
-      description: "Interactive analytics dashboard for monitoring financial metrics and performance.",
-      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
-      date: "2025.01.24",
-      category: "Analytics",
-      technologies: ["React", "D3.js", "Firebase", "TailwindCSS"]
+      title: "Photography Portfolio",
+      description: "Explore my collection of stunning photographs, showcasing my creative talents.",
+      image: "/pic3.png",
+      link: "https://ypphotography.vercel.app/"
     },
     {
       id: 3,
-      title: "Social Media App",
-      description: "A feature-rich social platform focusing on community engagement and content sharing.",
-      image: "https://images.unsplash.com/photo-1600096194534-95cf5ece04cf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
-      date: "2024.08.04",
-      category: "Social",
-      technologies: ["Next.js", "GraphQL", "Auth0", "Cloudinary"]
+      title: "React to Angular Convertor",
+      description: "Experience the seamless conversion of React components to Angular.",
+      image: "/pic2.png",
+      link: "https://reacttoangualar.vercel.app/"
     },
+    // {
+    //   id: 4,
+    //   title: "Health Tracking App",
+    //   description: "Mobile application for monitoring health metrics and wellness activities.",
+    //   image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
+    //   link: "https://health-tracker.example.com"
+    // },
+    // {
+    //   id: 5,
+    //   title: "AI Assistant",
+    //   description: "Intelligent virtual assistant powered by machine learning algorithms.",
+    //   image: "https://images.unsplash.com/photo-1677442135096-fa1d8ef54f9c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
+    //   link: "https://ai-assistant.example.com"
+    // },
   ];
 
   return (
@@ -163,7 +181,7 @@ const Index = () => {
                 className='text-xl'
                 variant="primary" 
                 icon
-                onClick={() => navigate('/contact')}
+                onClick={() => handleNavigation('/contact')}
               >
                 Contact Me
               </AnimatedButton>
@@ -257,19 +275,10 @@ const Index = () => {
                     {project.description}
                   </p>
                   
-                  <div className="flex flex-wrap gap-2 mb-6">
-                    {project.technologies.map((tech, index) => (
-                      <span 
-                        key={index} 
-                        className="text-xs font-medium px-3 py-1 bg-purple-100 text-purple-700 rounded-full"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
+                
                   
                   <div className="flex justify-between items-center">
-                    <a href={`/projects/${project.id}`} className="flex items-center text-purple-600 font-medium hover:text-purple-800 transition-colors">
+                    <a href={project.link} target="_blank" rel="noopener noreferrer" className="flex items-center text-purple-600 font-medium hover:text-purple-800 transition-colors">
                       <span className="mr-1">View project</span>
                       <ArrowRight size={16} />
                     </a>
@@ -281,7 +290,7 @@ const Index = () => {
                       <a href="#" className="p-2 bg-gray-100 hover:bg-gray-200 rounded-full transition-colors">
                         <Code size={16} className="text-gray-700" />
                       </a>
-                      <a href="#" className="p-2 bg-gray-100 hover:bg-gray-200 rounded-full transition-colors">
+                      <a href={project.link} target="_blank" rel="noopener noreferrer" className="p-2 bg-gray-100 hover:bg-gray-200 rounded-full transition-colors">
                         <ExternalLink size={16} className="text-gray-700" />
                       </a>
                     </div>
@@ -295,7 +304,7 @@ const Index = () => {
             <AnimatedButton
               variant="primary"
               icon
-              onClick={() => navigate('/projects')}
+              onClick={() => handleNavigation('/projects')}
             >
               View All Projects
             </AnimatedButton>
@@ -326,7 +335,12 @@ const Index = () => {
               <AnimatedButton
                 variant="primary"
                 icon
-                onClick={() => navigate('/contact')}
+                onClick={() => {
+                  window.scrollTo(0, 0);
+                  setTimeout(() => {
+                    navigate('/contact');
+                  }, 100);
+                }}
               >
                 Let's Connect
               </AnimatedButton>

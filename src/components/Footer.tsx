@@ -15,8 +15,8 @@ const Footer: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
           {/* About Column */}
           <div className="md:col-span-4">
-            <h2 className="text-2xl font-bold text-white mb-3 tracking-wide">Yajnesh Ponnappa</h2>
-            <p className="text-gray-300 text-sm leading-relaxed max-w-md mb-4 tracking-wide leading-6">
+            <h2 className="text-3xl font-bold text-white mb-3 tracking-wider">Yajnesh Ponnappa</h2>
+            <p className="text-gray-300 text-xl max-w-md mb-4 tracking-wider leading-6">
               A passionate developer focused on creating beautiful web experiences.
             </p>
             
@@ -43,23 +43,23 @@ const Footer: React.FC = () => {
           
           {/* Quick Links and Services combined in one column */}
           <div className="md:col-span-4">
-            <h3 className="text-lg font-semibold text-white mb-3 tracking-wide">Links</h3>
+            <h3 className="text-lg font-semibold text-white mb-3 tracking-wider">Links</h3>
             <div className="grid grid-cols-2 gap-x-4">
               <ul className="space-y-2">
                 <li>
-                  <Link to="/" className="text-gray-300 text-sm hover:text-white transition-colors flex items-center group tracking-wide">
+                  <Link to="/" className="text-gray-300 text-lg hover:text-white transition-colors flex items-center group tracking-wider">
                     <span className="group-hover:translate-x-1 transition-transform">Home</span>
                     <ArrowUpRight size={12} className="ml-1 opacity-0 group-hover:opacity-100 transition-opacity" />
                   </Link>
                 </li>
                 <li>
-                  <Link to="/projects" className="text-gray-300 text-sm hover:text-white transition-colors flex items-center group tracking-wide">
+                  <Link to="/projects" className="text-gray-300 text-lg hover:text-white transition-colors flex items-center group tracking-wider">
                     <span className="group-hover:translate-x-1 transition-transform">Projects</span>
                     <ArrowUpRight size={12} className="ml-1 opacity-0 group-hover:opacity-100 transition-opacity" />
                   </Link>
                 </li>
                 <li>
-                  <Link to="/contact" className="text-gray-300 text-sm hover:text-white transition-colors flex items-center group tracking-wide">
+                  <Link to="/contact" className="text-gray-300 text-lg hover:text-white transition-colors flex items-center group tracking-wider">
                     <span className="group-hover:translate-x-1 transition-transform">Contact</span>
                     <ArrowUpRight size={12} className="ml-1 opacity-0 group-hover:opacity-100 transition-opacity" />
                   </Link>
@@ -67,25 +67,27 @@ const Footer: React.FC = () => {
               </ul>
               
               <ul className="space-y-2">
-                <li className="text-gray-300 text-sm hover:text-white transition-colors tracking-wide">Web Development</li>
-                <li className="text-gray-300 text-sm hover:text-white transition-colors tracking-wide">UI/UX Design</li>
-                <li className="text-gray-300 text-sm hover:text-white transition-colors tracking-wide">Consulting</li>
+                <li className="text-gray-300 text-lg hover:text-white transition-colors tracking-wider">Web Development</li>
+                <li className="text-gray-300 text-lg hover:text-white transition-colors tracking-wider">UI/UX Design</li>
+                <li className="text-gray-300 text-lg hover:text-white transition-colors tracking-wider">Consulting</li>
               </ul>
             </div>
           </div>
           
           {/* Contact */}
           <div className="md:col-span-4">
-            <h3 className="text-lg font-semibold text-white mb-3 tracking-wide">Contact</h3>
-            <a href="mailto:yajnuponnappa@gmail.com" className="text-gray-300 text-sm block hover:text-white transition-colors mb-2 tracking-wide leading-6">
-              yajnuponnappa@gmail.com
-            </a>
-            <a href="tel:+919113286294" className="text-gray-300 text-sm block hover:text-white transition-colors mb-2 tracking-wide leading-6">
-              +91 9113286294
-            </a>
-            <p className="text-gray-300 text-sm tracking-wide leading-6">
-              Bengaluru, India
-            </p>
+            <h3 className="text-lg font-semibold text-white mb-3 tracking-wider">Contact</h3>
+            <div className="space-y-2">
+              <a href="mailto:yajnuponnappa@gmail.com" className="text-gray-300 text-lg block hover:text-white transition-colors tracking-wider leading-6">
+                yajnuponnappa@gmail.com
+              </a>
+              <a href="tel:+919113286294" className="text-gray-300 text-lg block hover:text-white transition-colors tracking-wider leading-6">
+                +91 9113286294
+              </a>
+              <p className="text-gray-300 text-lg tracking-wider leading-6">
+                Bengaluru, India
+              </p>
+            </div>
           </div>
         </div>
         
