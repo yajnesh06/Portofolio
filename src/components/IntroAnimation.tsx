@@ -143,7 +143,7 @@ const IntroAnimation: React.FC<IntroAnimationProps> = ({ userName, onComplete })
           animate={{ opacity: typingComplete ? 1 : 0, y: typingComplete ? 0 : 10 }}
           transition={{ duration: 0.4, ease: "easeOut" }}
         >
-          Full-Stack Developer
+          Frontend Developer
         </motion.p>
       </motion.div>
       

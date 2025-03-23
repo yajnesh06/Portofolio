@@ -41,43 +41,40 @@ const Projects = () => {
   const projects = [
     {
       id: 1,
-      title: "E-Commerce Platform",
-      description: "A modern online shopping experience with intuitive navigation and seamless checkout.",
+      title: "Globe Trek AI",
+      description: "Craft your Dream getaways with this AI powered Travel Planner.",
       image: "https://images.unsplash.com/photo-1661956602116-aa6865609028?ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=764&q=80",
-      date: "2025.02.21",
-      category: "Career"
+      
     },
     {
       id: 2,
-      title: "Finance Dashboard",
-      description: "Interactive analytics dashboard for monitoring financial metrics and performance.",
+      title: "Photography Portfolio",
+      description: "Explore my collection of stunning photographs, showcasing my creative talents.",
+      
       image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
-      date: "2025.01.24",
-      category: "Trend & Vision"
+      
     },
     {
       id: 3,
-      title: "Social Media App",
-      description: "A feature-rich social platform focusing on community engagement and content sharing.",
+      title: "React to Angular Convertor",
+      description: "Experience the seamless conversion of React components to Angular.",
+      
       image: "https://images.unsplash.com/photo-1600096194534-95cf5ece04cf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
-      date: "2024.08.04",
-      category: "Press Release"
+      
     },
     {
       id: 4,
       title: "Health Tracking App",
       description: "Mobile application for monitoring health metrics and wellness activities.",
       image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
-      date: "2024.07.15",
-      category: "Career"
+    
     },
     {
       id: 5,
       title: "AI Assistant",
       description: "Intelligent virtual assistant powered by machine learning algorithms.",
       image: "https://images.unsplash.com/photo-1677442135096-fa1d8ef54f9c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80",
-      date: "2024.06.30",
-      category: "Trend & Vision"
+      
     },
   ];
 
@@ -122,16 +119,10 @@ const Projects = () => {
                         />
                         
                         {/* Overlay color tag */}
-                        <div className="absolute top-0 left-0 bg-[#ff3131] text-white px-3 py-1 text-sm z-10">
-                          <span className="font-medium">{project.category}</span>
-                        </div>
-                      </div>
+                        
+                     
                       
-                      {/* Right side: Content */}
-                      <div className="p-5">
-                        <div className="flex justify-between items-center text-sm mb-2">
-                          <span className="text-gray-600 text-xs">{project.date}</span>
-                        </div>
+                     
                         
                         <h3 className="text-xl font-bold mb-2 group-hover:text-[#005efe] transition-colors duration-300">
                           {project.title}

@@ -13,7 +13,7 @@ interface InfiniteSkillsSliderProps {
 // Memoize the skill item to prevent unnecessary re-renders
 const SkillItem = memo(({ skill }: { skill: Skill }) => (
   <div className="flex items-center justify-center px-6">
-    <span className="text-blue-700 hover:text-blue-900 text-lg font-medium transition-colors duration-300 flex items-center">
+    <span className="text-blue-700 hover:text-blue-900 text-2xl font-medium transition-colors duration-300 flex items-center">
       <img 
         src={skill.icon} 
         alt={skill.name} 
@@ -71,7 +71,7 @@ const InfiniteSkillsSlider: React.FC<InfiniteSkillsSliderProps> = ({ skills }) =
       gsap.set(track, { x: 0 });
       
       // Create the infinite animation
-      const pixelsPerSecond = 200; // Speed control
+      const pixelsPerSecond = 150; // Speed control
       const trackWidth = track.scrollWidth / 2;
       const duration = trackWidth / pixelsPerSecond;
       

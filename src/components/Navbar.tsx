@@ -42,7 +42,7 @@ const Navbar: React.FC<NavbarProps> = ({ userName }) => {
     >
       <div className="container mx-auto px-6 flex justify-between items-center">
         <Link to="/" 
-              className="text-xl font-medium flex items-center"
+              className="text-3xl font-medium flex items-center"
             >
               <motion.span 
                 style={{
@@ -52,11 +52,11 @@ const Navbar: React.FC<NavbarProps> = ({ userName }) => {
                   backgroundClip: "text",
                   filter: "drop-shadow(0 0 2px rgba(139, 92, 246, 0.3))"
                 }}
-                initial={{ opacity: 0, x: -20 }}
+                initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
                 whileHover={{ scale: 1.05 }}
-                className="text-xl md:text-xl font- font-bold"
+                className="text-xl md:text-3xl font- font-bold"
               >
                 {userName}
               </motion.span>
@@ -68,7 +68,7 @@ const Navbar: React.FC<NavbarProps> = ({ userName }) => {
             <motion.div key={link.id} className="relative">
               <Link
                 to={link.path}
-                className={`relative px-4 py-2 font-medium transition-colors ${
+                className={`relative px-4 py-2  text-3xl font-semibold transition-colors ${
                   isActive(link.path) ? 'text-indigo-600' : 'text-gray-800'
                 }`}
                 onMouseEnter={() => setHoveredLink(link.id)}
