@@ -73,20 +73,24 @@
   }
 
   body {
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: "AbolitionTest-Round", "Helvetica Neue", Helvetica, Arial, sans-serif;
     @apply bg-gradient-to-br from-[#f8f9fa] to-[#e9ecef] text-black antialiased;
     font-feature-settings: "rlig" 1, "calt" 1;
+    letter-spacing: 0.08em;
+    line-height: 1.6;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-weight: 700;
+    font-family: "AbolitionTest-Round", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 300;
+    letter-spacing: 0.1em;
+    line-height: 1.3;
   }
 
   button, a {
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: "AbolitionTest-Round", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    letter-spacing: 0.04em;
   }
-
   html {
     scroll-behavior: smooth;
   }
@@ -279,5 +283,13 @@
   .magnetic-button:hover {
     transform: translateY(-4px);
   }
+}
+
+@font-face {
+  font-family: 'AbolitionTest-Round';
+  src: url('/fonts/AbolitionTest-Round.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
 }
 
