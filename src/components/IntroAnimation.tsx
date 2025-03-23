@@ -14,7 +14,7 @@ const IntroAnimation: React.FC<IntroAnimationProps> = ({ userName, onComplete })
 
   useEffect(() => {
     let index = 0;
-    const typingSpeed = 120; // Slower typing speed
+    const typingSpeed = 220; // Slower typing speed
     
     // Typing animation
     const typingInterval = setInterval(() => {
@@ -159,7 +159,7 @@ const IntroAnimation: React.FC<IntroAnimationProps> = ({ userName, onComplete })
           initial={{ width: "0%" }}
           animate={{ width: "100%" }}
           transition={{ 
-            duration: 2.2,
+            duration: 3,
             ease: "easeInOut"
           }}
         />

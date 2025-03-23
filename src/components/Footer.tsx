@@ -22,11 +22,11 @@ const Footer: React.FC = () => {
             
             <div className="flex space-x-4">
               {/* Social Icons */}
-              <a href="https://github.com" target="_blank" rel="noopener noreferrer" 
+              <a href="https://github.com/yajnesh06" target="_blank" rel="noopener noreferrer" 
                 className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-[#005efe] hover:scale-110 transition-all duration-300">
                 <Github size={16} />
               </a>
-              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" 
+              <a href="https://linkedin.com/in/yajnesh-at" target="_blank" rel="noopener noreferrer" 
                 className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-[#005efe] hover:scale-110 transition-all duration-300">
                 <Linkedin size={16} />
               </a>
@@ -78,13 +78,13 @@ const Footer: React.FC = () => {
           <div className="md:col-span-4">
             <h3 className="text-lg font-semibold text-white mb-3">Contact</h3>
             <a href="mailto:contact@yajnesh.com" className="text-gray-300 text-sm block hover:text-white transition-colors mb-2">
-              contact@yajnesh.com
+              yajnuponnappa@gmail.com
             </a>
             <a href="tel:+11234567890" className="text-gray-300 text-sm block hover:text-white transition-colors mb-2">
-              +1 123 456 7890
+              +91 9113286294
             </a>
             <p className="text-gray-300 text-sm">
-              San Francisco, CA 94103
+            Bengaluru, India
             </p>
           </div>
         </div>

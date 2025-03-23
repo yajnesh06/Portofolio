@@ -46,7 +46,7 @@ const Index = () => {
     });
 
     // Animation for section headings
-    gsap.utils.toArray('.gradient-heading').forEach((heading: any) => {
+    gsap.utils.toArray('.gradient-heading').forEach((heading: HTMLElement) => {
       gsap.fromTo(
         heading,
         { opacity: 0, y: 50 },
@@ -68,19 +68,24 @@ const Index = () => {
   }, []);
 
   const skills = [
-    { name: "React", icon: "⚛️" },
-    { name: "TypeScript", icon: "𝕋" },
-    { name: "Node.js", icon: "🟢" },
-    { name: "Next.js", icon: "▲" },
-    { name: "Tailwind CSS", icon: "🌊" },
-    { name: "GSAP", icon: "🔄" },
-    { name: "Framer Motion", icon: "🎞️" },
-    { name: "UI/UX Design", icon: "🎨" },
-    { name: "GraphQL", icon: "◯" },
-    { name: "Firebase", icon: "🔥" },
-    { name: "AWS", icon: "☁️" },
-    { name: "MongoDB", icon: "🍃" },
+    { name: "React", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
+    { name: "TypeScript", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" },
+    { name: "Node.js", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" },
+    { name: "Next.js", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" },
+    { name: "Tailwind CSS", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg" },
+    { name: "GSAP", icon: "https://cdn.worldvectorlogo.com/logos/gsap-greensock.svg" },
+    { name: "Framer Motion", icon: "https://cdn.worldvectorlogo.com/logos/framer-motion.svg" },
+    { name: "UI/UX Design", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" },
+    { name: "REST APIs", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" },
+    { name: "Supabase", icon: "https://raw.githubusercontent.com/supabase/supabase/master/packages/common/assets/images/supabase-logo-icon.svg" },
+    { name: "AWS", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg" },
+    { name: "Docker", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" },
   ];
+  
+  
+  
+  
+  
 
   const projects = [
     {
@@ -129,8 +134,8 @@ const Index = () => {
       </div>
 
       {/* Hero Section */}
-      <section className="pt-10 pb-20 px-4 md:px-12 lg:px-24 relative">
-        <div className="container mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <section className="pt-0 pb-15 px-4 md:px-12 lg:px-24 relative">
+        <div className="container  m-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
@@ -161,7 +166,7 @@ const Index = () => {
               </AnimatedButton>
               <AnimatedButton 
                 variant="outline"
-                onClick={() => window.open('/resume.pdf', '_blank')}
+                onClick={() => window.open('/f1.pdf', '_blank')}
               >
                 <Download size={16} className="mr-2" />
                 Download Resume
@@ -178,7 +183,7 @@ const Index = () => {
             <div className="relative">
               <div className="absolute inset-0 -z-10 bg-gradient-to-br from-[#8B5CF6]/20 via-[#6366F1]/10 to-[#8B5CF6]/20 rounded-full blur-3xl opacity-70 animate-pulse"></div>
               <img 
-                src="/lovable-uploads/2ad7618b-9c74-475b-a660-d365d34d6d83.png" 
+                src="/pic1.webp" 
                 alt="Yajnesh Ponnappa" 
                 className="w-full max-w-md object-contain z-10 hero-image animate-float"
               />
@@ -191,8 +196,8 @@ const Index = () => {
       {/* Skills Section */}
       <section className="py-20 overflow-hidden relative">
         <div className="container mx-auto mb-12 px-4">
-          <motion.h2 
-            className="text-3xl md:text-4xl font-bold mb-6 text-center gradient-heading"
+        <motion.h2 
+            className="text-3xl md:text-3xl lg:text-6xl font-bold text-center gradient-heading leading-relaxed py-2"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
@@ -200,7 +205,7 @@ const Index = () => {
             My Skills
           </motion.h2>
           
-          <p className="text-center text-gray-700 max-w-2xl mx-auto mb-12">
+          <p className="text-center text-gray-700 max-w-2xl mx-auto mb-12 text-xl">
             I specialize in these technologies to build modern, responsive, and user-friendly applications.
           </p>
         </div>
@@ -322,7 +327,7 @@ const Index = () => {
             <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-gradient-to-tr from-pink-400/20 to-purple-400/20 rounded-full blur-3xl"></div>
             
             <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center">
-              Ready to <span className="gradient-heading">collaborate</span>?
+              Ready to <span className="gradient-heading">Collaborate</span>?
             </h2>
             <p className="text-gray-700 text-center mb-8 max-w-2xl mx-auto">
               I'm always open to discussing new projects, creative ideas or opportunities to be part of your vision.
