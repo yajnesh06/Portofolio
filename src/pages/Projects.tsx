@@ -61,7 +61,7 @@ const Projects = () => {
       title: "React to Angular Convertor",
       description: "Experience the seamless conversion of React components to Angular.",
       image: "/pic2.png",
-      link: "https://reacttoangualar.vercel.app/"
+      link: "https://reacttoangular.vercel.app/"
     },
     // {
     //   id: 4,
