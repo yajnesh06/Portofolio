@@ -106,21 +106,24 @@ const Index = () => {
       title: "Globe Trek AI",
       description: "Craft your Dream getaways with this AI powered Travel Planner.",
       image: "/pic1.png",
-      link: "https://globetrekai.vercel.app/"
+      link: "https://globetrekai.vercel.app/",
+      github : "https://github.com/yajnesh06/GlobeTrek"
     },
     {
       id: 2,
       title: "Photography Portfolio",
       description: "Explore my collection of stunning photographs, showcasing my creative talents.",
       image: "/pic3.png",
-      link: "https://ypphotography.vercel.app/"
+      link: "https://ypphotography.vercel.app/",
+      github : "https://github.com/yajnesh06/shutter-haven"
     },
     {
       id: 3,
       title: "React to Angular Convertor",
       description: "Experience the seamless conversion of React components to Angular.",
       image: "/pic2.png",
-      link: "https://reacttoangualar.vercel.app/"
+      link: "https://reacttoangualar.vercel.app/",
+      github:"https://github.com/yajnesh06/react-angular-transformer"
     },
     // {
     //   id: 4,
@@ -284,15 +287,11 @@ const Index = () => {
                     </a>
                     
                     <div className="flex gap-3">
-                      <a href="#" className="p-2 bg-gray-100 hover:bg-gray-200 rounded-full transition-colors">
+                      <a href={project.github} target="_blank" rel="noopener noreferrer" className="p-2 bg-gray-100 hover:bg-gray-200 rounded-full transition-colors">
                         <Github size={16} className="text-gray-700" />
                       </a>
-                      <a href="#" className="p-2 bg-gray-100 hover:bg-gray-200 rounded-full transition-colors">
-                        <Code size={16} className="text-gray-700" />
-                      </a>
-                      <a href={project.link} target="_blank" rel="noopener noreferrer" className="p-2 bg-gray-100 hover:bg-gray-200 rounded-full transition-colors">
-                        <ExternalLink size={16} className="text-gray-700" />
-                      </a>
+                      
+                      
                     </div>
                   </div>
                 </div>
